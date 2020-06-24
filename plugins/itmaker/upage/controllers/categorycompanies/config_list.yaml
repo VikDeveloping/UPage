@@ -1,0 +1,12 @@
+list: $/itmaker/upage/models/categorycompany/columns.yaml
+modelClass: Itmaker\Upage\Models\CategoryCompany
+title: CategoryCompanies
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'itmaker/upage/categorycompanies/update/:id'

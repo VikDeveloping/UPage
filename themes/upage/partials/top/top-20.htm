@@ -1,0 +1,128 @@
+[viewBag]
+==
+<?php
+use Itmaker\Upage\Models\CompanyView;
+function onStart(){
+    
+    $currentMonth = date('Y-m');
+    $lastMonth = new Date($currentMonth);
+    $lastMonth->modify('-1 MONTH');
+    $preLastMonth = new Date($currentMonth);
+    $preLastMonth->modify('-2 MONTH');
+    
+    
+    $companyViews = CompanyView::with('company')->remember(10)
+                            ->whereBetween('date', [$preLastMonth.'-1', $currentMonth.'-31']);
+                            
+    $comViews = &$companyViews;
+    
+    $this['currentTop'] = $comViews->whereBetween('date', [$currentMonth.'-1', $currentMonth.'-31'])
+                            ->select(['*', DB::raw("SUM(views) as total_views")])
+                            ->groupBy('company_id')
+                            ->orderByDesc('total_views')
+                            ->limit(20)
+                            ->get();
+                            
+    $this['lastTop']    = $comViews->whereBetween('date', [$lastMonth->format('Y-m').'-1', $lastMonth->format('Y-m').'-31'])
+                            ->select(['*', DB::raw("SUM(views) as total_views")])
+                            ->groupBy('company_id')
+                            ->orderByDesc('total_views')
+                            ->limit(20)
+                            ->get();
+    $this['prelastTop'] = $comViews->whereBetween('date', [$preLastMonth->format('Y-m').'-1', $preLastMonth->format('Y-m').'-31'])
+                            ->select(['*', DB::raw("SUM(views) as total_views")])
+                            ->groupBy('company_id')
+                            ->orderByDesc('total_views')
+                            ->limit(20)
+                            ->get(); 
+}
+?>
+==
+{% set mnths = ['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %}
+<div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="tabs popular_companies">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab-1" data-toggle="tab" aria-expanded="true">
+                                Топ {{ currentTop | length }} популярных компаний ({{ mnths[now| date("n")] }})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab-2" data-toggle="tab" aria-expanded="false">
+                                Топ {{ lastTop | length }} популярных компаний ({{ mnths[now| date("n") - 1] }})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab-3" data-toggle="tab" aria-expanded="false">
+                                Топ {{ preLastTop | length }} популярных компаний ({{ mnths[now| date("n") - 2] }})
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab-1">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Название</th>
+                                    <th>Просмотры</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for key, item in currentTop %}    
+                                    <tr>
+                                        <td>{{ key + 1 }}</td>
+                                        <td><a href="{{ 'show' | page({id: item.company.id}) }}">{{ item.company.name }}</a></td>
+                                        <td>{{ item.total_views }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="tab-2">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Название</th>
+                                    <th>Просмотры</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for key, item in lastTop %}    
+                                    <tr>
+                                        <td>{{ key + 1 }}</td>
+                                        <td><a href="{{ 'show' | page({id: item.company.id}) }}">{{ item.company.name }}</a></td>
+                                        <td>{{ item.total_views }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="tab-3">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Название</th>
+                                    <th>Просмотры</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for key, item in preLastTop %}    
+                                    <tr>
+                                        <td>{{ key + 1 }}</td>
+                                        <td><a href="{{ 'show' | page({id: item.company.id}) }}">{{ item.company.name }}</a></td>
+                                        <td>{{ item.total_views }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

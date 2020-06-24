@@ -1,0 +1,10 @@
+name: CompanyTypes
+form: $/itmaker/upage/models/companytype/fields.yaml
+modelClass: Itmaker\Upage\Models\CompanyType
+defaultRedirect: itmaker/upage/companytypes
+create:
+    redirect: 'itmaker/upage/companytypes/update/:id'
+    redirectClose: itmaker/upage/companytypes
+update:
+    redirect: itmaker/upage/companytypes
+    redirectClose: itmaker/upage/companytypes

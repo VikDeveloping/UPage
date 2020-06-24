@@ -1,0 +1,10 @@
+name: CompanySchedules
+form: $/itmaker/upage/models/companyschedule/fields.yaml
+modelClass: Itmaker\Upage\Models\CompanySchedule
+defaultRedirect: itmaker/upage/companyschedules
+create:
+    redirect: 'itmaker/upage/companyschedules/update/:id'
+    redirectClose: itmaker/upage/companyschedules
+update:
+    redirect: itmaker/upage/companyschedules
+    redirectClose: itmaker/upage/companyschedules

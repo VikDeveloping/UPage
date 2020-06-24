@@ -1,0 +1,23 @@
+[viewBag]
+==
+<div>
+    {{ form_ajax('onDeactivate') }}
+        <h3>Деактивировать ваш аккаунт?</h3>
+        <p>
+            Ваша учетная запись будет отключена, а ваши данные удалены с сайта.
+            Вы можете активировать свою учетную запись в любое время, выполнив вход.
+        </p>
+        <div class="form-group">
+            <label for="accountDeletePassword">Чтобы продолжить, пожалуйста, введите ваш пароль:</label>
+            <input name="password" type="password" class="form-control" id="accountDeletePassword" />
+        </div>
+        <button type="submit" class="btn ">
+            Подтвердите деактивацию аккаунта
+        </button>
+        <a
+            href="javascript:;"
+            onclick="$('#accountDeactivateForm').toggle()">
+            я передумал
+        </a>
+    {{ form_close() }}
+</div>

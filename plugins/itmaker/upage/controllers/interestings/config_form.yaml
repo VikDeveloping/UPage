@@ -1,0 +1,10 @@
+name: Interestings
+form: $/itmaker/upage/models/interesting/fields.yaml
+modelClass: Itmaker\Upage\Models\Interesting
+defaultRedirect: itmaker/upage/interestings
+create:
+    redirect: 'itmaker/upage/interestings/update/:id'
+    redirectClose: itmaker/upage/interestings
+update:
+    redirect: itmaker/upage/interestings
+    redirectClose: itmaker/upage/interestings

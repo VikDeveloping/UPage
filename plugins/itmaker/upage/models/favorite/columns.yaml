@@ -1,0 +1,21 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+    company_id:
+        label: company_id
+        type: number
+        searchable: true
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        searchable: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        searchable: true

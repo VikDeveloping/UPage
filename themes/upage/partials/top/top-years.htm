@@ -1,0 +1,93 @@
+[viewBag]
+==
+<?php
+use Itmaker\Upage\Models\CategoryView;
+function onStart(){
+    $currentMonth = date('Y-m');
+    
+    if (!input('category')) {
+        return;
+    }
+    $cat = input('category');
+    $this['currentTop'] = CategoryView::with('category')->remember(10)->whereBetween('date', [$currentMonth.'-1', $currentMonth.'-31'])
+                            ->where('category_id', $cat)
+                            ->select(['*', DB::raw("SUM(views) as total_views")])
+                            ->groupBy('category_id')
+                            ->orderByDesc('total_views')
+                            ->first();
+    $lastMonth = new Date($currentMonth);                                                        
+    $lastMonth->modify('-1 MONTH');                        
+    $this['lastTop'] = CategoryView::with('category')->remember(10)->whereBetween('date', [$lastMonth.'-1', $lastMonth.'-31'])
+                            ->where('category_id', $cat)
+                            ->select(['*', DB::raw("SUM(views) as total_views")])
+                            ->groupBy('category_id')
+                            ->orderByDesc('total_views')
+                            ->first();        
+    $prelastMonth = new Date($currentMonth);                                                        
+    $prelastMonth->modify('-3 MONTH');                                                
+    $this['prelastTop'] = CategoryView::with('category')->remember(10)->whereBetween('date', [$prelastMonth.'-1', $lastMonth.'-31'])
+                            ->where('category_id', $cat)
+                            ->select(['*', DB::raw("SUM(views) as total_views")])
+                            ->groupBy('category_id')
+                            ->orderByDesc('total_views')
+                            ->first();                                
+    $halfayear = new Date($currentMonth);                            
+    $halfayear->modify('-6 MONTH');                                                
+    $this['halfaYear'] = CategoryView::with('category')->remember(10)->whereBetween('date', [$halfayear.'-1', $lastMonth.'-31'])
+                            ->where('category_id', $cat)
+                            ->select(['*', DB::raw("SUM(views) as total_views")])
+                            ->groupBy('category_id')
+                            ->orderByDesc('total_views')
+                            ->first();                                                        
+                            
+    $this['id'] = $cat;
+}
+?>
+==
+{% set mnths = ['','январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'] %}
+{% if id %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="statistics">
+            <div>
+                <span>Статистика просмотров рубрики: {{ currentTop.category.name }}</span>
+            </div>
+            <div class="border_left"></div>
+            <div class="statistics_data">
+                <table class="table">
+                    <tr>
+                        <td>За текущий масяц: ({{ mnths[ now| date("n")] }} {{ now | date("Y") }})</td>
+                        
+                        <td class="td_number">{{currentTop.total_views}}</td>
+                    </tr>
+                    <tr>
+                        <td>За прошлый масяц: ({{ mnths[ now| date("n") - 1 ] }} {{ now | date("Y") }})</td>
+                        {% for item in lastTop %}
+                            {% if item.id == id %}
+                                <td class="td_number">{{item.total_views}}</td>
+                            {% endif %}    
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>За 3 месяца: ({{ mnths[ now| date("n") - 1 ] }} {{ now | date("Y") }} - {{ mnths[ now| date("n") - 3 ] }} {{ now | date("Y") }})</td>
+                        {% for item in prelastTop %}
+                            {% if item.id == id %}
+                                <td class="td_number">{{item.total_views}}</td>
+                            {% endif %}    
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>За пол года: ({{ mnths[ now| date("n") - 1 ] }} {{ now | date("Y") }} - {{ mnths[ now| date("n") - 6 ] }} {{ now | date("Y") }})</td>        
+                        {% for item in halfaYear %}
+                            {% if item.id == id %}
+                                <td class="td_number">{{item.total_views}}</td>
+                            {% endif %}    
+                        {% endfor %}
+                    </tr>
+                </table>
+                <div class="diagramm_img pull-right">
+                    <img src="{{'assets/images/diagramm.png'|theme}}">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

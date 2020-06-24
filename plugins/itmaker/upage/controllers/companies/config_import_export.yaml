@@ -1,0 +1,13 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+import:
+    title: Import companies
+    modelClass: Itmaker\Upage\Models\CompanyImport
+    list: $/itmaker/upage/models/company/columns.yaml
+
+export:
+    title: Export companies
+    modelClass: Itmaker\Upage\Models\CompanyExport
+    list: $/itmaker/upage/models/company/columns.yaml

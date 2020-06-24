@@ -1,0 +1,42 @@
+name: menu
+items:
+    -
+        title: 'О компании'
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: about-us
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Рекламодателям
+        type: cms-page
+        code: ''
+        reference: catalog
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Афиша
+        type: cms-page
+        code: ''
+        reference: posters
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Интересное
+        type: cms-page
+        code: ''
+        reference: interestings
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

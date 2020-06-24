@@ -1,0 +1,149 @@
+[viewBag]
+==
+<div class="container-fullwidth">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                
+                    {% if staticMenu.menuItems %}
+                        <ul class="nav navbar-nav">
+                            {% partial staticMenu ~ "::items" items=staticMenu.menuItems %}
+                            {#<li class="active"><a href="#">О компании</a></li>#}
+                        </ul>                            
+                    {% endif %}
+                    
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Скачать приложение</a></li>
+                    <li><a href="#"><i class="fa fa-android"></i></a></li>
+                    <li><a href="#"><i class="fa fa-apple"></i></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12 header_menu">
+        <div class="logo pull-left">
+            <a href="/">
+                <img src="{{'assets/images/logo1.png'|theme}}">
+            </a>
+        </div>
+        <div class="pull-left col-md-11 col-xs-10 col-sm-10 header_menu_right">
+            <div class="pull-left all_categories_btn">
+                <a href="{{'catalog'|page}}"><i
+                            class="fa fa-bars fa-2x"></i><span>Весь каталог</span></a>
+            </div>
+            <div class="form-group inner-addon right-addon pull-left search-input">
+                <i class="glyphicon glyphicon-search"></i>
+                <form method="get" action="{{ 'catalog' | page }}">                   
+                    <input class="form-control" type="text" name="search" value="{{ input('search') }}"
+                           placeholder="Если знаете название организации - введите здесь">
+                </form>
+
+            </div>
+            <div class="pull-left favorite_btn">
+                <a href="{{'favorites'|page}}"> <i class="fa fa-star-o fa-2x"></i> <span>Избранное</span></a>
+            </div>
+
+            <div class="pull-left dashboard_btn">
+                
+                <a href="javascript:void(0)" data-toggle="modal" onclick="openLoginModal('{{ user ? '' : 'auth'  }}');">
+                    {% if user %}
+                
+                        {% if user.avatar %}
+                            <img src="{{ user.avatar.path }}" alt="" class="img-fluid" style="height:50px; width:50px;">
+                        {% else %}
+                            <i class="fa fa-user fa-2x"></i>
+                        {% endif %}
+                        
+                        <span>{{ user.name }}</span>
+                            
+                    {% else %}
+                       
+                        <i class="fa fa-user fa-2x"></i>
+                        <span>Личный кабинет</span>
+                        
+                    {% endif %}                 
+                </a>
+               
+            </div>
+        </div>
+    </div>
+    <div class="modal fade login" id="loginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                
+                {% if user %}
+                    <div class="modal-body mt-3">
+                        <a href="{{ 'cabinet' | page }}" class="btn btn-block btn-default">Мой профиль</a>
+                        <a  role="menuitem" tabindex="-1" 
+                            data-request="onLogout" 
+                            data-request-data="redirect: '/'" class="btn btn-block btn-default">Выход</a>
+                    </div>
+                    <div class="modal-footer">
+                        
+                    </div>
+                {% else %}
+                
+                    <div class="modal-body">
+                        {% flash %}
+                            <p
+                                data-control="flash-message"
+                                class="flash-message fade {{ type }}"
+                                data-interval="5">
+                                {{ message }}
+                            </p>
+                        {% endflash %}
+                        <div class="box">
+                            <div class="content" id="login">
+                                <div class="form loginBox">
+                                    {% partial account ~ '::signin' %}
+                                </div>
+                            </div>
+                        </div>                    
+                        <div class="box">
+                            <div class="content registerBox" style="display:none;" id="registration">
+                                {% partial account ~ '::register' %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="forgot login-footer">
+                            <span>
+                               <a href="javascript: showRegisterForm();">Регистрация</a>
+                            </span>
+                        </div>
+                        <div class="forgot forget-footer" style="display:none">
+                            <span>
+                               <a href="javascript: showLoginForm();">Авторизация</a>
+                            </span>
+                            <span>
+                               <a href="javascript: showRegisterForm();">Регистрация</a>
+                            </span>
+                        </div>
+                        <div class="forgot register-footer" style="display:none">
+                            <span>Если есть аккаунт? - </span>
+                            <a href="javascript: showLoginForm();">Авторизуйтесь</a>
+                        </div>
+                    </div>
+                    
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

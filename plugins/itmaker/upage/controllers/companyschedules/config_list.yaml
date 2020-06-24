@@ -1,0 +1,12 @@
+list: $/itmaker/upage/models/companyschedule/columns.yaml
+modelClass: Itmaker\Upage\Models\CompanySchedule
+title: CompanySchedules
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'itmaker/upage/companyschedules/update/:id'

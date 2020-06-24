@@ -1,0 +1,13 @@
+columns:
+    id:
+        label: id
+        type: number
+    category_id:
+        label: category_id
+        type: number
+    views:
+        label: views
+        type: number
+    date:
+        label: date
+        type: text

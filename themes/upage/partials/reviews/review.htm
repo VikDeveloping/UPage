@@ -1,0 +1,38 @@
+[viewBag]
+==
+<h2 class="text-center" style="margin: 50px 0;">Отзывы компании</h2>
+<div class="card col-md-12" style="padding:3%;">
+    <div style="padding: 2rem 10rem; background-image: url(http://itmaker.upage.uz.itmaker.uz/themes/upage/assets/images/background.png);background-size: contain;border-radius: 15px;min-height: 120px;">
+        <div class="card-body">
+        {% for key, review in reviews %} 
+            <div class="row" style="margin-bottom:30px;background:floralwhite;border-radius:15px;padding:10px;box-shadow: 0px 0px 3px -1px #565151;">
+        	    <div class="col-md-2 text-center">
+        	        <img src="{{ user.avatar.path ? user.avatar.path : 'https://image.ibb.co/jw55Ex/def_face.jpg' }}" 
+        	             class="img img-rounded img-fluid" style="width:50%;border-radius: 30px;"/>
+        	        <p class="text-secondary text-center small">{% if review.user %}{{review.user.name}}{%else%}no name{% endif%} </p>
+        	    </div>
+        	    <div class="col-md-8">
+        	        <p class="text-danger">{{review.review|raw}}</p>
+        	    </div>
+        	    <div class="col-md-2">
+        	        <small style="font-size: 0.9rem;">{{review.date|date('Y-m-d')}}</small>
+        	    </div>    
+            </div>
+        {% endfor %} 
+        </div>
+    </div>    
+    <div class="card-block">
+        <form class="form-inline" data-request="onSend" data-request-files="" data-request-flash="" data-request-data="" data-spy="scroll" data-target="#comment">
+            <textarea name="review" placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
+            <input type="hidden" value="{{user.id}}" name="user">
+            <input type="hidden" value="{{company.id}}" name="companyId">
+            <button class="btn btn-primary float-xs-right" data-attach-loading="" type="submit">Share</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .card-inner{margin-left: 4rem;}
+    .pb-cmnt-container {font-family: Lato;margin-top: 100px;}
+    .pb-cmnt-textarea {resize: none;padding: 20px;height: 130px;width: 100%;border: 1px solid #F2F2F2;}
+</style>

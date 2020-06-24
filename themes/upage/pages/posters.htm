@@ -1,0 +1,128 @@
+title = "posters"
+url = "/posters"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Itmaker\Upage\Models\Interesting;
+use Itmaker\Upage\Models\Poster;
+use Itmaker\Upage\Models\Company;
+use Itmaker\Upage\Models\Banner;
+
+function onStart() {
+    $this['posters'] = Poster::where('is_active', true)->get();
+    
+    $banners = Banner::banners([
+                    'type'  => 'posters',
+                    'limit' => 2
+                ]);
+    
+    if (!$banners) {return;}
+    
+    $this['banners'] = $banners;
+    
+}
+?>
+==
+<!-- Auth Form -->
+<div class="container">
+    <div class="clearfix visible-xs-block"></div>
+    <!-- Рекламные баннеры -->
+    
+    {% partial 'banners/two-items' %}
+    <!-- Конец Рекламные баннеры -->
+
+    <div class="razdelitel"></div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="afisha">
+            <img src="{{'assets/images/movie.png'|theme}}" class="pull-left">
+            <h3 class="pull-left">Афиша событий</h3>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+    {% for poster in posters %}    
+        <div class="movie_card">
+            <div>
+                <div class="wrapper">
+                    <div class="movie_card-image">
+                        <img src="{{poster.image.path}}">
+                    </div>
+                    <div class="movie_card-table" style="padding: 0 70px;">
+                        <div class="movie_card-title" style="margin-left: 35px;">
+                            <a href="{{'poster'|page({id: poster.id})}}">{{poster.name}}</a>
+                        </div>
+                        <div class="movie_card-date" style="margin-left: 35px;">
+                            {{poster.anounce}}
+                        </div>
+                        <div class="movie_card-date">
+                            {{poster.description|raw}}
+                        </div>    
+                        <div class="movie_card-date" style="margin-top: 20px;">
+                            <p>{{poster.date | date('d M')}}</p>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %} 
+    </div>
+
+    <!-- Конец Сегодня кинотетрах -->
+
+    <div class="clearfix visible-xs-block"></div>
+
+    <!-- Афиша событий -->
+    <div class="afisha_slides">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="afisha">
+                <h3 class="pull-left">Афиша событий</h3>
+                <h4 class="pull-right see_all">
+                    <a href="{{'interestings'|page}}">смотреть все</a>
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="owl-carousel owl-theme owl-carousel-afisha">
+                {% partial 'posters' %}
+            </div>
+        </div>
+    </div>
+    <!-- Конец Афиша событий -->
+
+    <div class="razdelitel"></div>
+
+    {% partial 'top/top-20' %}
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <!-- Интересное -->
+    <div class="interesting_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Интересное</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'interestings'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-interesting">
+                    {% partial 'interestings' %}
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Интересное -->
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <div class="razdelitel"></div>
+    
+    <!-- Today on movie -->
+    {% partial 'todayCinema' %}       
+    <!-- Конец Today on movie -->
+    <div class="razdelitel"></div>
+</div>

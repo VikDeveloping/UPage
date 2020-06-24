@@ -1,0 +1,48 @@
+title = "cabinet"
+url = "/cabinet"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "home"
+==
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"></div>
+    </div>
+
+    <div class="container">
+        <div class="razdelitel"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-3 col-sm-12 col-xs-12">                    
+                    {% partial 'cabinet/left-side' %}
+                </div>
+                <div class="col-md-9 col-sm-12 col-xs-12 dashboard-right">
+                    <div class="dashboard-text">
+                        <h3>МОЙ АККАУНТ</h3> <!-- str_lower -->
+                        <div class="dashboard-text_info">
+                            <p><img src="{{'assets/images/svg/check mark.svg'|theme}}"> Благодарим за регистрацию на нашем сайте</p>
+                        </div>
+                        <div class="razdelitel"></div>
+                        <div>
+                            <p>
+                                Добро пожаловать, {{ user.name }} (не {{ user.name }}? 
+                                <a role="menuitem" tabindex="-1" data-request="onLogout" data-request-data="redirect: '/'">
+                                     Выйти
+                                </a>)
+                           </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Конец Bottom slides -->
+        </div>
+    </div>
+</div>    
+
+
+<div class="razdelitel"></div>
+
+<!-- SEO Текст -->

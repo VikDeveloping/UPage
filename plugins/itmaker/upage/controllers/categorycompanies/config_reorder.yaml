@@ -1,0 +1,5 @@
+title: Category Companies
+modelClass: Itmaker\Upage\Models\CategoryCompany
+nameFrom: name
+toolbar:
+    buttons: reorder_toolbar

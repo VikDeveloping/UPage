@@ -1,0 +1,228 @@
+[session]
+security = "all"
+
+[account]
+redirect = "cabinet"
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+
+[staticMenu]
+code = "menu"
+==
+<?php
+use Itmaker\Upage\Models\Company;
+use Itmaker\Upage\Models\Favorite;
+use Rainlab\User\Models\UserGroup;
+
+function onStart(){
+    
+    //user groups 
+    $this['userGroups'] = UserGroup::get();
+      
+    $posts = array_keys(Cookie::get('wishlist', []));
+    if (!empty($posts)) {
+        $posts = Company::whereIn('id', $posts)->get();
+        /*
+         * Add a "url" helper attribute for linking to each post and category
+         */
+        $posts->each(function($post) {
+            $post->setUrl('detail', $this->controller);
+        });
+    }
+    $this['companies'] = $posts;
+    
+    $user = Auth::getUser();
+    if (isset($user)) {
+        $favorites = Favorite::where('user_id', $user->id)->get();
+    }
+    if(!isset($favorites)){ return;}
+    
+    $fav = [];
+    foreach( $favorites as $favorite ) {
+        $fav[] = $favorite->company_id;
+    }
+    
+    $fav = array_unique($fav);
+    $this['companies'] = Company::whereIn('id', $fav)->get();
+}
+
+function onCheck() {
+    $id = null;
+    $result = "<div class='alert alert-danger'> User not found!</div>";
+    
+    if (input('parent_id')) {
+       $id = input('parent_id');
+    } elseif (input('user_id')) {
+        $id = input('user_id');
+    }
+    
+    $user = User::where('id', $id)->first();
+    
+    $image = isset($user->avatar->path) ? $user->avatar->path : "https://loremflickr.com/50/60/coin";
+    
+    if ($user) {
+        $result = "<div class='alert alert-info'> <img style='width: 30px' class='mr-2' src='{$image}'> <strong> {$user->name} {$user->surname} </strong> </div>";
+    }
+    
+    /*return [
+        "#user-result" => $result
+    ];*/
+    
+    return [
+        $this['user'] => $result
+    ];
+}
+
+function onAddToList() {
+    $data = Input::only(['post_id', 'user_id']);
+
+    $rules = [
+        'post_id' => 'required',
+        'user_id' => 'integer',
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+    
+    if(isset($data['user_id'])){
+        $fav = Favorite::where('company_id', $data['post_id'])->where('user_id', $data['user_id'])->first();
+        if( $fav ) {
+            Flash::info('Удалено из избранное');     
+            return Favorite::where('company_id', $data['post_id'])->delete();
+        }else{
+            $favorite = new Favorite();
+            $favorite->company_id = $data['post_id'];
+            $favorite->user_id = $data['user_id'];
+            $favorite->save();
+            Flash::success("Добавлено в избраннoе!");     
+        }
+    }else{
+        $class = "";
+        $id = $data['post_id'];
+        $posts = Cookie::get('wishlist', []);
+    
+        if (isset($posts[$id])) {
+            unset($posts[$id]);
+            Cookie::queue('wishlist', $posts);
+            $class = "-empty";
+        } else {
+            $posts[$id] = $id;
+            Cookie::queue('wishlist', $posts);
+    
+            if ($this->showMessage) {
+                Flash::success(_('Добавлено в избраннoе!'));
+            }
+        }
+    }    
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="1vfRKP9h2HBQbiQDxNQ3gKG4d1cf4d7jMR3kk39U">
+    <title>UPage</title>
+
+    <link rel="icon" type="image/x-icon" href=" {{ 'assets/images/favicon/favicon.png'|theme }} " />
+    <link rel="stylesheet" href="{{'assets/css/bootstrap.css'|theme}}">
+    <link rel="stylesheet" href="{{'assets/css/font-awesome.css'|theme}}">
+    <link rel="stylesheet" href="{{'assets/css/owlcarousel/owl.theme.default.min.css'|theme}}">
+    <link rel="stylesheet" href="{{'assets/css/owlcarousel/owl.carousel.min.css'|theme}}">
+    <link rel="stylesheet" href="{{'assets/css/main.css'|theme}}">
+    <link rel="stylesheet" href="{{'assets/css/login.css'|theme}}">
+    {% styles %}
+
+</head>
+<body>
+    
+    {% partial 'site/header' %}
+    
+    
+    {% page %}
+    
+    
+    {% partial 'site/footer' %}
+    
+    
+    
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript" src="{{'assets/js/jquery.min.js'|theme}}"></script>
+    <script type="text/javascript" src="{{'assets/js/bootstrap.min.js'|theme}}"></script>
+    <script type="text/javascript" src="{{'assets/js/owl.carousel.min.js'|theme}}"></script>
+    <script type="text/javascript" src="{{'assets/js/login.js'|theme}}"></script>    
+    {% framework extras %}
+    {% scripts %}
+</body>    
+
+<script>
+    $(document).ready(function () {
+        var owl_items_afisha;
+        var owl_items_interesting;
+        if (window.screen.width < 768) {
+            owl_items_afisha = 2;
+            owl_items_interesting = 2;
+        } else if (window.screen.width >= 768 && window.screen.width <= 991) {
+            owl_items_interesting = 2;
+            owl_items_afisha = 3;
+        } else if (window.screen.width > 991) {
+            owl_items_interesting = 2;
+            owl_items_afisha = 5;
+        }
+        $(".owl-carousel-top_banner").owlCarousel({
+            items: 1,
+            responsiveClass: true,
+            loop: true,
+            nav: false,
+            navElement: true,
+            dots: true,
+            margin: 5,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: true
+        });
+        $(".owl-carousel-afisha").owlCarousel({
+            items: owl_items_afisha,
+            responsiveClass: true,
+            loop: true,
+            nav: true,
+            navElement: true,
+            dots: false,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: true
+        });
+
+        $(".owl-carousel-interesting").owlCarousel({
+            items: owl_items_interesting,
+            responsiveClass: true,
+            loop: true,
+            nav: true,
+            navElement: true,
+            dots: false,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: true
+        });
+
+    });
+    
+    
+</script>
+</html>

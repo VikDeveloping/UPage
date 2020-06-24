@@ -1,0 +1,11 @@
+name: Posters
+modelClass: Itmaker\Upage\Models\Poster
+form: $/itmaker/upage/models/poster/fields.yaml
+defaultRedirect: itmaker/upage/posters
+create:
+    redirect: 'itmaker/upage/posters/update/:id'
+    redirectClose: itmaker/upage/posters
+update:
+    redirect: itmaker/upage/posters
+    redirectClose: itmaker/upage/posters
+preview: {  }

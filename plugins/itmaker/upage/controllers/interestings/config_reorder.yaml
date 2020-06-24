@@ -1,0 +1,5 @@
+title: Interestings
+modelClass: Itmaker\Upage\Models\Interesting
+nameFrom: name
+toolbar:
+    buttons: reorder_toolbar

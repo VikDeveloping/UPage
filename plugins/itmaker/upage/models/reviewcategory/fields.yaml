@@ -1,0 +1,14 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        type: text
+    is_active:
+        label: 'Is Active'
+        span: auto
+        type: switch
+    description:
+        label: Description
+        size: large
+        span: full
+        type: richeditor

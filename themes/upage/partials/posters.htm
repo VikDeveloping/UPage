@@ -1,0 +1,47 @@
+[viewBag]
+==
+<?php
+use Itmaker\Upage\Models\Poster;
+
+function onStart () {
+    
+    $posters = Poster::with('image')
+                     ->remember(10)
+                     ->posters([
+                         'limit' => 20
+                     ]);
+
+    if (!$posters) {
+        return;
+    }
+    
+    $this['posters'] = $posters;
+}
+?>
+==
+{% set mnths = ['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %}
+{% for poster in posters %}
+    <div class="afisha_news">
+        <div class="afisha_news-img">
+        
+            {% if poster.image %}
+                <img src="{{ poster.image.path}}">
+            {% else %}
+                <img src="{{ 'assets/images/thumb__174_116.jpg'|theme }}">    
+            {% endif %}
+    
+        </div>
+        <div class="afisha_news-text">
+            <div class="afisha_news-text_title">
+                <a href="{{'poster'|page({id: poster.id})}}">{{ poster.name }}</a>
+            </div>
+            <div class="afisha_news-text_short catalogue_card-text">
+                {{ poster.anounce }}
+            </div>
+            <div class="afisha_news-date">
+                {{ poster.date | date('j') }}
+                {{ mnths[poster.date | date('n')] }}
+            </div>
+        </div>
+    </div>
+{% endfor %}

@@ -1,0 +1,5 @@
+title: Locations
+modelClass: Itmaker\Upage\Models\Location
+nameFrom: name
+toolbar:
+    buttons: reorder_toolbar

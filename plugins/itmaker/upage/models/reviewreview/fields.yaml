@@ -1,0 +1,35 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        type: text
+    email:
+        label: E-mail
+        span: auto
+        type: text
+    content:
+        label: Content
+        size: ''
+        span: full
+        type: richeditor
+    is_active:
+        label: 'Is active'
+        span: auto
+        type: switch
+    user_id:
+        label: 'User id'
+        span: auto
+        disabled: 0
+        type: number
+    coor_lat:
+        label: Ширина
+        span: auto
+        type: text
+    coor_long:
+        label: Долгота
+        span: auto
+        type: text
+    map:
+        span: full
+        path: map
+        type: partial

@@ -1,0 +1,12 @@
+columns:
+    id:
+        label: id
+        type: number
+    category_id:
+        label: category_id
+        type: number
+        searchable: true
+    company_id:
+        label: company_id
+        type: number
+        searchable: true

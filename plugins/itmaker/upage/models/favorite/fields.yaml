@@ -1,0 +1,11 @@
+fields:
+    company_id:
+        label: 'Company Id'
+        span: auto
+        disabled: 1
+        type: number
+    user_id:
+        label: 'User Id'
+        span: right
+        disabled: 1
+        type: number

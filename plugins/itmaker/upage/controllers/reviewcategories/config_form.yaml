@@ -1,0 +1,10 @@
+name: ReviewCategories
+form: $/itmaker/upage/models/reviewcategory/fields.yaml
+modelClass: Itmaker\Upage\Models\ReviewCategory
+defaultRedirect: itmaker/upage/reviewcategories
+create:
+    redirect: 'itmaker/upage/reviewcategories/update/:id'
+    redirectClose: itmaker/upage/reviewcategories
+update:
+    redirect: itmaker/upage/reviewcategories
+    redirectClose: itmaker/upage/reviewcategories

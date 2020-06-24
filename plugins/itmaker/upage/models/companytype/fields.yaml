@@ -1,0 +1,9 @@
+fields:
+    name:
+        label: 'Название типа'
+        span: auto
+        type: text
+    is_active:
+        label: Активность
+        span: auto
+        type: switch

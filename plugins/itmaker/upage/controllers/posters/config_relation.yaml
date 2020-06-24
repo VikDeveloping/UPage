@@ -1,0 +1,8 @@
+posterSchedules:
+    label: Режима
+    manage:
+        form: $/itmaker/upage/models/posterschedule/fields.yaml
+        list: $/itmaker/upage/models/posterschedule/columns.yaml
+    view:
+        list: $/itmaker/upage/models/posterschedule/columns.yaml
+        toolbarButtons: create|delete

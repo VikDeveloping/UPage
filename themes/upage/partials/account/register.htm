@@ -1,0 +1,53 @@
+[viewBag]
+==
+<h3>Регистрация</h3>
+<div class="form">
+    {% if canRegister %}
+        <form
+            data-request="onRegister" id="register">
+            <div class="form-group">
+                <select id="user_groups" name="groups.code" class="form-control">
+                    
+                    {% for userGroup in userGroups %}
+                    
+                    <option value="{{ userGroup.id }}">{{ userGroup.name }}</option>
+                    
+                    {% endfor %}
+                    
+                </select>`
+            </div>    
+            <div class="form-group">
+                <input
+                    name="name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Имя" />
+            </div>
+            <div class="form-group">
+                <input
+                    name="email"
+                    type="text"
+                    class="form-control"
+                    placeholder="E-mail" />
+            </div>
+            <div class="form-group">
+                <input
+                    name="phone"
+                    type="text"
+                    class="form-control"
+                    placeholder="Телефон" />
+            </div>
+            <div class="form-group">
+                <input
+                    name="password"
+                    type="password"
+                    class="form-control"
+                    placeholder="Пароль" />
+            </div>
+    
+            <button type="submit" class="btn btn-default btn-register">Регистрация</button>
+        </form>
+    {% else %}
+        <!-- Registration is disabled. -->
+    {% endif %}
+</div>

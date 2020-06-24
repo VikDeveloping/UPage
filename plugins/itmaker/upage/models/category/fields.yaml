@@ -1,0 +1,23 @@
+fields:
+    name:
+        label: Название
+        span: auto
+        type: text
+    is_active:
+        label: Активность
+        span: auto
+        type: switch
+    description:
+        label: Описание
+        size: huge
+        span: full
+        type: richeditor
+    icon:
+        label: Иконка
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload

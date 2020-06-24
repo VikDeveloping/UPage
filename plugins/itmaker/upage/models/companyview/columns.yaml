@@ -1,0 +1,21 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    date:
+        label: Дата
+        type: date
+        searchable: true
+        sortable: true
+    company_id:
+        label: Компания
+        type: text
+        searchable: true
+        sortable: true
+        relation: company
+    views:
+        label: Просмотры
+        type: number
+        sortable: true

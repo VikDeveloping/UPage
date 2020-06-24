@@ -1,0 +1,16 @@
+companySchedules:
+    label: Режима
+    manage:
+        form: $/itmaker/upage/models/companyschedule/fields.yaml
+        list: $/itmaker/upage/models/companyschedule/columns.yaml
+    view:
+        list: $/itmaker/upage/models/companyschedule/columns.yaml
+        toolbarButtons: create|delete
+companyViews:
+    label: Просмотра
+    manage:
+        form: $/itmaker/upage/models/companyview/fields.yaml
+        list: $/itmaker/upage/models/companyview/columns.yaml
+    view:
+        list: $/itmaker/upage/models/companyview/columns.yaml
+        toolbarButtons: create|delete

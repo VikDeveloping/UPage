@@ -1,0 +1,198 @@
+title = "Интересное"
+url = "/interesting/:id"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Itmaker\Upage\Models\Category;
+use Itmaker\Upage\Models\Poster;
+use Itmaker\Upage\Models\Interesting;
+use Itmaker\Upage\Models\Banner;
+
+
+function onStart(){
+
+    $id = $this->param('id');
+    
+    $interesting = Interesting::with('image')->where('id', $id)->remember(10)->first();
+    
+    if (!$interesting) {
+        return Redirect::to('interestings');
+    }
+    
+    $this['interesting'] = $interesting;
+    
+    $banners = Banner::banners([
+                    'type'  => 'interestings',
+                    'limit' => 2
+                ]);
+    
+    if (!$banners) {return;}
+    
+    $this['banners'] = $banners;
+}
+?>
+==
+{% set mnths = ['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %}
+<div class="container">
+    <div class="row" style="margin-top: 65px;margin-bottom: 65px;">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <h4> {{ interesting.name }} </h4>
+            <hr />
+            <img src="{{interesting.image.path}}" style="max-width:100%">
+            <hr />
+            <div>            
+                {{ interesting.description | raw }}
+            </div>
+            <hr />
+            <div style="display: flex"> 
+                <a href="{{ interesting.link }}" style="margin-right: auto;">{{ interesting.link }}</a> 
+                <span style="margin-left: auto">
+                    {{ interesting.updated_at | date('d') }}
+                    {{ mnths[interesting.updated_at| date('n')] }}
+                    {{ interesting.updated_at | date('Y') }} г.
+                </span> 
+            </div>
+        </div>
+    </div>
+</div>    
+
+<div class="container">
+    <!-- Афиша событий -->
+    <div class="afisha_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Афиша событий</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'posters'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-afisha">
+                    
+                    {% partial 'posters' %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Афиша событий -->
+    
+    </div>
+    <div class="razdelitel"></div>
+    
+    {% partial 'top/top-20' %}
+    
+    <div class="clearfix visible-xs-block"></div>
+    <div class="container">
+    <!-- Интересное -->
+    <div class="interesting_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Интересное</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'interestings'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-interesting">
+                    {% partial 'interestings' %}
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Интересное -->
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <div class="razdelitel"></div>
+    
+    <!-- Today on movie -->
+    <div class="afisha_slides">
+        <div class="row">
+            {% partial 'todayCinema' %}
+        </div>
+    </div>
+
+    <!-- Конец Today on movie -->
+    <div class="razdelitel"></div>
+    
+    
+    <!-- <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="information">
+                <div class="information-title">
+                    <p>
+                        <i class="fa fa-exclamation-circle"></i>
+                        Полезная информация
+                    </p>
+                </div>
+                <div class="information-list">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <ul>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <ul>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                            </ul>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  -->   
+</div>

@@ -1,0 +1,31 @@
+[viewBag]
+==
+<?php
+use Itmaker\Upage\Models\Banner;
+
+function onStart () {
+        
+    $banners = Banner::banners([
+                    'type'  => 'slider',
+                    'limit' => 5
+                ]);
+    
+    if (!$banners) {
+        return;
+    }
+    
+    $this['banners'] = $banners;
+}
+?>
+==
+<div class="row"> 
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="owl-carousel owl-theme owl-carousel-top_banner">
+            {% for banner in banners %}
+                <a href="{{ 'redirect' | page({type: 'banner', id: banner.id}) }}?url={{ banner.url }}">
+                    <img src="{{banner.image.path}}" style="max-height: 250px; object-fit: cover;">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    day:
+        label: День
+        type: text
+        searchable: true
+        sortable: true
+    start:
+        label: Начало
+        type: time
+        searchable: true
+        sortable: true
+    end:
+        label: Конец
+        type: time
+        searchable: true
+        sortable: true
+    is_weekend:
+        label: Выходной
+        type: switch
+        searchable: true
+        sortable: true

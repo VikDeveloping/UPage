@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    name:
+        label: name
+        type: text
+        searchable: true
+        sortable: true
+    anounce:
+        label: anounce
+        type: text
+        searchable: true
+        sortable: true
+    date:
+        label: date
+        type: date
+        searchable: true
+        sortable: true
+    is_active:
+        label: is_active
+        type: switch
+        searchable: true
+        sortable: true

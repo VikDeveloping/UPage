@@ -1,0 +1,10 @@
+name: PosterSchedules
+form: $/itmaker/upage/models/posterschedule/fields.yaml
+modelClass: Itmaker\Upage\Models\PosterSchedule
+defaultRedirect: itmaker/upage/posterschedules
+create:
+    redirect: 'itmaker/upage/posterschedules/update/:id'
+    redirectClose: itmaker/upage/posterschedules
+update:
+    redirect: itmaker/upage/posterschedules
+    redirectClose: itmaker/upage/posterschedules

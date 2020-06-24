@@ -1,0 +1,10 @@
+name: ReviewReviews
+form: $/itmaker/upage/models/reviewreview/fields.yaml
+modelClass: Itmaker\Upage\Models\ReviewReview
+defaultRedirect: itmaker/upage/reviewreviews
+create:
+    redirect: 'itmaker/upage/reviewreviews/update/:id'
+    redirectClose: itmaker/upage/reviewreviews
+update:
+    redirect: itmaker/upage/reviewreviews
+    redirectClose: itmaker/upage/reviewreviews

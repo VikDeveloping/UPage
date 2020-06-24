@@ -1,0 +1,11 @@
+name: Locations
+modelClass: Itmaker\Upage\Models\Location
+form: $/itmaker/upage/models/location/fields.yaml
+defaultRedirect: itmaker/upage/locations
+create:
+    redirect: 'itmaker/upage/locations/update/:id'
+    redirectClose: itmaker/upage/locations
+update:
+    redirect: itmaker/upage/locations
+    redirectClose: itmaker/upage/locations
+preview: {  }

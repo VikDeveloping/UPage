@@ -1,0 +1,5 @@
+title: Posters
+modelClass: Itmaker\Upage\Models\Poster
+nameFrom: name
+toolbar:
+    buttons: reorder_toolbar

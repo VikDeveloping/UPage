@@ -1,0 +1,9 @@
+import:
+    title: Import categories
+    modelClass: Itmaker\Upage\Models\CategoryImport
+    list: $/itmaker/upage/models/category/columns.yaml
+
+export:
+    title: Export categories
+    modelClass: Itmaker\Upage\Models\CategoryExport
+    list: $/itmaker/upage/models/category/columns.yaml

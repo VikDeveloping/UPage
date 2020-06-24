@@ -1,0 +1,10 @@
+name: Banners
+form: $/itmaker/upage/models/banner/fields.yaml
+modelClass: Itmaker\Upage\Models\Banner
+defaultRedirect: itmaker/upage/banners
+create:
+    redirect: 'itmaker/upage/banners/update/:id'
+    redirectClose: itmaker/upage/banners
+update:
+    redirect: itmaker/upage/banners
+    redirectClose: itmaker/upage/banners

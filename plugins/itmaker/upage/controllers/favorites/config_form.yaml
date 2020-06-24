@@ -1,0 +1,10 @@
+name: Favorites
+form: $/itmaker/upage/models/favorite/fields.yaml
+modelClass: Itmaker\Upage\Models\Favorite
+defaultRedirect: itmaker/upage/favorites
+create:
+    redirect: 'itmaker/upage/favorites/update/:id'
+    redirectClose: itmaker/upage/favorites
+update:
+    redirect: itmaker/upage/favorites
+    redirectClose: itmaker/upage/favorites

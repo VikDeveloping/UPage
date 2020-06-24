@@ -1,0 +1,13 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+import:
+    title: Import locations
+    modelClass: Itmaker\Upage\Models\LocationImport
+    list: $/itmaker/upage/models/location/columns.yaml
+
+export:
+    title: Export locations
+    modelClass: Itmaker\Upage\Models\LocationExport
+    list: $/itmaker/upage/models/location/columns.yaml

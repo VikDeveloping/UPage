@@ -1,0 +1,12 @@
+list: $/itmaker/upage/models/companyreview/columns.yaml
+modelClass: Itmaker\Upage\Models\CompanyReview
+title: CompanyReviews
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'itmaker/upage/companyreviews/update/:id'

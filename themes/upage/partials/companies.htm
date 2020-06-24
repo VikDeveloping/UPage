@@ -1,0 +1,121 @@
+[viewBag]
+==
+<div class="organisation_cards">
+    <div class="org_card">
+        <div class="org_card-top">
+            <div class="org_name">
+                <div class="name"><a href="{{ 'show' | page({id: company.id}) }}">{{ company.name }}</a></div>
+            </div>
+            <div class="org_phone">
+                <img src="{{'assets/images/svg/Phone_red.svg'|theme}}">
+                {% for key, phone in phones %}
+                    {{ key != 0 ? ', ':'' }} {{phone.phone}} 
+                {% endfor %}
+            </div>
+        </div>
+        <div class="org_card-center" style="width: 100%">
+            <div class="row" style="margin-bottom: 2rem">
+                <div class="col-md-6">
+                     <table class="table table-responsive table-border-0">
+                        <tbody>
+                            <tr>
+                                <td>Индекс:</td>
+                                <td>{{ company.index }}</td>
+                            </tr>
+                            <tr>
+                                <td>Код Страны:</td>
+                                <td>{{ company.region_code }}</td>
+                            </tr>
+                            <tr>
+                                <td>Факсы:</td>
+                                <td>{{ company.fax }}</td>
+                            </tr>
+                            <tr>
+                                <td>Веб-сайт:</td>
+                                <td>{{ company.website }}</td>
+                            </tr>
+                            <tr>
+                                <td>E-mail:</td>
+                                <td><a href="mailto:{{ company.email }}">{{ company.email }}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6 border-md-left">
+                    
+                    {% if company.logo %}
+                        <img src="{{ company.logo.path }}" class="company-logo" alt="">
+                    {% else %}
+                        <img src="{{ 'assets/images/thumb__174_116.jpg'|theme }}">    
+                    {% endif %}
+                             
+                </div>
+            </div>
+            <div class="row border-top" style="padding-top: 1rem">
+                <div class="col-md-12">
+                    <table class="table table-responsive table-border-0">
+                        <tbody>
+                            <tr>
+                                <td>Юридическое название:</td>
+                                <td>{{ company.name }}</td>
+                            </tr>
+                            <tr>
+                                <td>Брендовое название:</td>
+                                <td>{{ company.brand_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>Адрес:</td>
+                                <td>
+                                    <a href="#map">
+                                        {{ company.country }}, 
+                                        {{ company.location.parent.name ~ ','}} 
+                                        {{ company.location.name ~ ',' }} 
+                                        {{ company.street }} 
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="org_card-bottom">
+            <div class="row">
+                <div class="col-md-8">
+                    <button data-toggle="collapse" data-target="#cats{{ key }}" class="org_card-bootom_more active">Рубрики <i class="fa fa-long-arrow-down"></i></button>
+                    <br>
+                    <div id="cats{{ key }}" class="collapse org_card-bootom_tags">
+                        <ul>
+                            {% for category in company.categories if category.nest_depth == 1 %}
+                                <li>
+                                    <a href="http://upage.uz/catalog?category={{ category.id }}">{{category.name}}</a>
+                                </li>
+                            {% endfor %}    
+                        </ul>
+                    </div>
+                </div>
+                {% if user %}
+                <div class="col-md-4">
+                    <div class="favorite text-right">
+                        <a href="javascript:void()" class="favorit-btn {{company.isFav()}}" 
+                            data-request="onAddToList" 
+                            data-request-flash="" 
+                            data-request-success="$(this).toggleClass('active')" 
+                            data-request-data="'post_id': {{company.id}}, {%if user%}'user_id': {{user.id}}{%endif%}">
+                            <i class="fa fa-star"></i>
+                            <span>
+                                {% if company.isFav() == 'active' %}
+                                    В избранном
+                                {% else %} 
+                                    Добавить в избранные
+                                {% endif %}
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

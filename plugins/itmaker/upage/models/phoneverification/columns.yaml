@@ -1,0 +1,34 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    phone:
+        label: phone
+        type: text
+        searchable: true
+    code:
+        label: code
+        type: number
+        searchable: true
+    verified:
+        label: verified
+        type: switch
+        sortable: true
+    resend:
+        label: resend
+        type: number
+        searchable: true
+    user_id:
+        label: user_id
+        type: number
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true

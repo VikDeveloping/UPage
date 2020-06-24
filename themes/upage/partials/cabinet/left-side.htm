@@ -1,0 +1,26 @@
+[viewBag]
+==
+<div class="dashboard-profile_menu-list">
+    <div>
+        <h3>
+            Моя учетная запись
+        </h3>
+    </div>
+    <ul>                            
+        <li>
+            <a href="{{ 'edit' | page({slug: 'account'}) }}"><img src="{{'assets/images/svg/Settings.svg'|theme}}"> Редактировать профиль</a>
+        </li>
+        <li>
+            <a href="{{ 'edit' | page({slug: 'password'}) }}"><img src="{{'assets/images/svg/Users_2.svg'|theme}}"> Смена пароля</a>
+        </li>
+         <li>
+            <a href="{{ 'edit' | page({slug: 'deactivation'}) }}"><img src="{{'assets/images/svg/Users_2.svg'|theme}}"> Деактивировать аккаунт </a>
+        </li>
+        <li>
+            <a role="menuitem" 
+               tabindex="-1" 
+               data-request="onLogout" 
+               data-request-data="redirect: '/'"><img src="{{'assets/images/svg/Exit.svg'|theme}}"> Выйти</a>
+        </li>
+    </ul>
+</div>

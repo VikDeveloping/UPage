@@ -1,0 +1,8 @@
+locationSchedules:
+    label: Режима
+    manage:
+        form: $/itmaker/upage/models/locationschedule/fields.yaml
+        list: $/itmaker/upage/models/locationschedule/columns.yaml
+    view:
+        list: $/itmaker/upage/models/locationschedule/columns.yaml
+        toolbarButtons: create|delete

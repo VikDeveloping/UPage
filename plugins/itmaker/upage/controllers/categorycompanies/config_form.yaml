@@ -1,0 +1,10 @@
+name: CategoryCompanies
+form: $/itmaker/upage/models/categorycompany/fields.yaml
+modelClass: Itmaker\Upage\Models\CategoryCompany
+defaultRedirect: itmaker/upage/categorycompanies
+create:
+    redirect: 'itmaker/upage/categorycompanies/update/:id'
+    redirectClose: itmaker/upage/categorycompanies
+update:
+    redirect: itmaker/upage/categorycompanies
+    redirectClose: itmaker/upage/categorycompanies

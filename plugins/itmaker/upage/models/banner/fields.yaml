@@ -1,0 +1,58 @@
+fields:
+    name:
+        label: Название
+        span: left
+        type: text
+    image:
+        label: Картинка
+        mode: image
+        imageWidth: '1200'
+        imageHeight: '400'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: right
+        required: 1
+        type: fileupload
+    place:
+        label: 'Место отображения баннера'
+        options:
+            home: 'стр. Главная'
+            slider: 'стр. Главная (слайдер)'
+            catalog: 'стр. Каталог'
+            interestings: 'стр. Интересные'
+            posters: 'стр. Афиши'
+            show: 'стр. Компания'
+        showSearch: true
+        span: left
+        required: 1
+        type: dropdown
+    description:
+        label: Описание
+        span: left
+        type: text
+    url:
+        label: Ссылка
+        span: left
+        type: text
+    views:
+        label: 'Количество отображений'
+        span: left
+        disabled: 1
+        type: number
+    clicks:
+        label: 'Количество переходов'
+        span: left
+        disabled: 1
+        type: number
+    deadline:
+        label: 'Срок показа'
+        mode: datetime
+        span: auto
+        type: datepicker
+    is_active:
+        label: Активность
+        span: left
+        required: 1
+        type: switch

@@ -1,0 +1,24 @@
+[viewBag]
+==
+<?php
+use Itmaker\Upage\Models\Banner;
+
+function onStart () {
+    
+    
+}
+?>
+==
+<div class="col-md-12 col-sm-12 col-xs-12" style="margin: 20px 0 20px 0;">
+    {% for key, banner in banners %}
+        {% if key >= uKey and key < uKey + 2 %}
+            <div class="col-md-6 col-sm-12 col-xs-12 banners">
+                <div class="banner_1">
+                    <a href="{{ 'redirect' | page({type: 'banner', id: banner.id}) }}?url={{ banner.url }}">
+                     <img src="{{ banner.image.path|resize(540, 150, {mode: 'crop'})}}" alt="image" style="max-height: 150px; max-width: 540px; object-fit: cover;"> 
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}        
+</div>

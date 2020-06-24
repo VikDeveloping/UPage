@@ -1,0 +1,160 @@
+title = "favorites"
+url = "/cabinet/favorites"
+layout = "default"
+is_hidden = 0
+==
+<!-- Auth Form -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"></div>
+    </div>
+    
+    <div class="clearfix visible-xs-block"></div>
+    <!-- Рекламные баннеры -->
+   {% partial 'banners/two-items' %}
+    <!-- Конец Рекламные баннеры -->
+    
+    <div class="razdelitel"></div>
+    
+    <!-- Каталог организации -->
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="text-center" style="margin: 0 0 50px 0;">
+            <h2><b>Bаши избранные</b></h2>
+        </div>    
+    {% for key, company in companies %}  
+        {% partial 'companies' company = company key = key%}
+    {% endfor %}        
+            
+    </div>
+    <!-- Афиша событий -->
+    <div class="afisha_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Афиша событий</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'posters'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-afisha">
+                    
+                    {% partial 'posters' %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Афиша событий -->
+
+    <div class="razdelitel"></div>
+</div>    
+{% partial 'top/top-20' %}
+<div class="container">    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <!-- Интересное -->
+    <div class="interesting_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Интересное</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'interestings'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-interesting">
+                    {% partial 'interestings' %}
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Интересное -->
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <div class="razdelitel"></div>
+    
+    <!-- Конец Today on movie -->
+    <div class="razdelitel"></div>
+    <div class="razdelitel"></div>
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <!-- <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="information">
+                <div class="information-title">
+                    <p>
+                        <i class="fa fa-exclamation-circle"></i>
+                        Полезная информация
+                    </p>
+                </div>
+                <div class="information-list">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <ul>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <ul>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                                <li><i class="fa fa-circle-o" style="color: red;"></i>
+                                    <a href="#">Lorem ipsum dolor sit amet</a>
+                                </li>
+                            </ul>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   -->  
+</div>

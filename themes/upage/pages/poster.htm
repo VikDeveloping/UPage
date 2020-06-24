@@ -1,0 +1,155 @@
+title = "poster"
+url = "/poster/:id"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Itmaker\Upage\Models\Category;
+use Itmaker\Upage\Models\Poster;
+use Itmaker\Upage\Models\Interesting;
+use Itmaker\Upage\Models\Company;
+
+function onStart(){
+    $id = $this->param('id');
+    $this['posters']    = Poster::where('is_active', true)->get();
+    
+    $poster = Poster::find($id);
+    $interesting = Interesting::find(input('interesting'));
+    
+    if (!$poster) {
+        return Redirect::to('/posters');
+    }
+    
+    $this['item'] = $poster;    
+    if($interesting) {
+        $this['item'] = $interesting;    
+    }
+}
+?>
+==
+<div class="container">
+    <div class="row" style="margin-top: 65px;margin-bottom: 65px;">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="organisation_cards">
+                <div class="org_card">
+                    <div class="org_card-center">
+                        <div class="org_card-center_left">
+                            <img src="{{item.image.path|resize(430, 286, {mode: 'crop'})}}">
+                        </div>
+                        <div class="org_card-center_left">
+                        </div>
+                        <div class="org_card-center_right">
+                            <h3>{{item.name}}</h3>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td><b>Анонс:</b></td>
+                                        <td>{{item.anounce}} </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Ссылка на трейлер (Youtube):</b></td>
+                                        <td><a href="{{item.video_url}}; ">{{item.video_url}} </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Дата премьеры:</b></td>
+                                        <td>{{item.date|date('d M Y')}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>    
+                        </div>    
+                        <div class="org_card-center_center" style="padding-left: 20px;">
+                            <table class="table" style="padding-top: 30px;"></table>
+                            <span><b>Описание:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <p>{{item.description|raw}}</p>
+                            <p style="margin-top: 40px;"><b>Расписание</b></p>
+                            <table class="table table-sm">
+                              <thead>
+                                <tr>
+                                  <th scope="col">№</th>
+                                  <th scope="col">Кинотеатр</th>
+                                  <th scope="col">Дата и время показа</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {% for key, schedule in item.posterSchedules %}          
+                                <tr>
+                                  <th scope="row">{{key+1}}</th>
+                                  <td>{{schedule.cinema}}</td>
+                                  <td>{{schedule.start}}</td>
+                                </tr>
+                              {% endfor %}    
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="org_panel"></div>
+            </div>
+        </div>
+    </div>
+</div>    
+
+<div class="container">
+    <!-- Афиша событий -->
+    <div class="afisha_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Афиша событий</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'posters'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-afisha">
+                    
+                    {% partial 'posters' %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Афиша событий -->
+    
+    <div class="razdelitel"></div>
+    
+    {% partial 'top/top-20' %}
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <!-- Интересное -->
+    <div class="interesting_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Интересное</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'interestings'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-interesting">
+                    {% partial 'interestings' %}
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Интересное -->
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <div class="razdelitel"></div>
+    
+    <!-- Today on movie -->
+    {% partial 'todayCinema' %}
+    
+    <!-- Конец Today on movie -->
+    <div class="razdelitel"></div>
+    <div class="razdelitel"></div>
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+       
+</div>

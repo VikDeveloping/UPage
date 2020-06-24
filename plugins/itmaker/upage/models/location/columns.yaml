@@ -1,0 +1,33 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    name:
+        label: name
+        type: text
+        searchable: true
+        sortable: true
+    is_active:
+        label: Активность
+        type: switch
+        searchable: true
+        sortable: true
+    parent_id:
+        label: parent_id
+        type: number
+        searchable: false
+        invisible: true
+    nest_left:
+        label: nest_left
+        type: number
+        invisible: true
+    nest_right:
+        label: nest_right
+        type: number
+        invisible: true
+    nest_depth:
+        label: nest_depth
+        type: number
+        invisible: true

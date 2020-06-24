@@ -1,0 +1,135 @@
+[viewBag]
+==
+<!-- SEO Текст -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <h3 class="">
+                Справочник нового формата
+            </h3>
+            <div class="seo_text seo_text-left pull-left">
+                <p> Наверное, вы не раз сталкивались с ситуациями, когда вам нужно найти организацию, а иногда две или три
+                    государственные организации. Ведь это очень удобно, если многие организации Узбекистана, будут входить в
+                    специальный каталог. Эта возможность создана специально для вас, в отличающемся от подобных предложений
+                    формате!
+                </p>
+                <p> В наш век современных быстроразвивающихся технологий спрос на электронные сетевые справочники, которым и
+                    является наш каталог организаций - очень востребованы и удобны.
+                </p>
+                <p> Бумажные ресурсы все чаще становятся вытесненными сетевыми аналогами. А базы предлагаемых вариантов
+                    пополняются ежедневно. Этот «путеводитель» в мир организаций и учреждений, очень полезен и необходим в
+                    сфере бизнеса и услуг.
+                </p>
+                <p>Что предлагает наш ресурс?</p>
+                <ul>
+                    <li>
+                        Организации Узбекистана распределены по удобным и логическим категориям, теперь найти организацию,
+                        нужную вам, очень легко;
+                    </li>
+                    <li>Государственные организации – это не все, что вы можете найти на сайте, ресурс содержит много
+                        полезной информации;
+                    </li>
+                    <li>Каталог организаций выполнен в стильном, приятном глазу дизайне.</li>
+                </ul>
+            </div>
+            <div class="seo_text seo_text-right pull-right">
+                <p> Удобность предоставляемой услуги еще и в том, что вам не нужно прикладывать усилий или искать тех, кто
+                    поможет в поиске. Перечень, предоставляемый вам, содержит проверенные и зарекомендовавшие себя на рынке
+                    организации Узбекистана самых различных направлений.</p>
+                <p>
+                    Оцените удобную функцию поиска, где на основании ввод интересующих вас значений, будут представлены
+                    варианты по запросу.
+                </p>
+                <p>
+                    Смело рекомендуйте наш каталог организаций! Помогая людям найти организацию, вы и для себя найдете много
+                    всего интересного и полезного!
+                </p>
+                <p>
+                    Государственные организации имеют всю исчерпывающую информацию в предоставленной базе данных. Краткое
+                    описание деятельности, контакты, адрес электронной почты или сайта (если есть) – облегчит понимание то
+                    ли это, что вы ищете или стоит рассмотреть иные варианты.
+                </p>
+                <p>
+                    Зарегистрировавшись, вы получаете доступ к личному кабинету и полноценный доступ ко всем возможностям
+                    ресурса. Вы можете оставлять комментарии и отзывы, вам будет предоставлена обратная связь и служба
+                    поддержки.
+                </p>
+                <p>
+                    Но, как говорится, лучше один раз увидеть, чем сто раз услышать или прочитать, как в данном случае.
+                    Поэтому приглашаем вас к нам испробовать и оценить предоставляемые вам данные и перестать терять время
+                    на поиски и советы. Мы работаем – для вашего комфорта.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Конец SEO Текст -->
+    
+    <div class="razdelitel"></div>
+    
+    <!--  Bottom slides -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="bottom_slide-left">
+                    <h3>Скачайте мобильное приложение Upage</h3>
+                    <div class="store pull-left">
+                        <a href="https://play.google.com/store"><img src="{{'assets/images/svg/Get_it_on_Google_play.svg'|theme}}"></a>
+                    </div>
+                    <div class="store pull-right">
+                        <a href="https://www.apple.com/ios/app-store/">
+                        <img src="{{'assets/images/svg/download-on-the-app-store-apple.svg'|theme}}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="bottom_slide-right">
+                    <img src="{{'assets/images/bottom_slide.png'|theme}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fullwidth">
+    <nav class="navbar navbar-bottom navbar-default" style="margin: 0">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" id="btn_bottom_menu" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                {% if staticMenu.menuItems %}
+                    <ul class="nav navbar-nav">
+                        {% partial staticMenu ~ "::items" items=staticMenu.menuItems %}
+                        {#<li class="active"><a href="#">О компании</a></li>#}
+                    </ul>                            
+                {% endif %}
+                <ul class="nav navbar-nav navbar-right">
+                    <div class="developer_link">
+                        Разработка веб-сайта студия <a href="https://qwerty.uz"><b>QWERTY</b></a>
+                    </div>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="map" style=" width: 100%; height: 500px;">
+            </div>
+        </div>
+    </div>
+</div>

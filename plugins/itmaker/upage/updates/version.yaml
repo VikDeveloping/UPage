@@ -1,0 +1,341 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table itmaker_upage_categories'
+    - builder_table_create_itmaker_upage_categories.php
+1.0.3:
+    - 'Updated table itmaker_upage_categories'
+    - builder_table_update_itmaker_upage_categories.php
+1.0.4:
+    - 'Updated table itmaker_upage_categories'
+    - builder_table_update_itmaker_upage_categories_2.php
+1.0.5:
+    - 'Created table itmaker_upage_cities'
+    - builder_table_create_itmaker_upage_cities.php
+1.0.6:
+    - 'Updated table itmaker_upage_cities'
+    - builder_table_update_itmaker_upage_cities.php
+1.0.7:
+    - 'Updated table itmaker_upage_cities'
+    - builder_table_update_itmaker_upage_cities_2.php
+1.0.8:
+    - 'Created table itmaker_upage_regions'
+    - builder_table_create_itmaker_upage_regions.php
+1.0.9:
+    - 'Created table itmaker_upage_posters'
+    - builder_table_create_itmaker_upage_posters.php
+1.0.10:
+    - 'Updated table itmaker_upage_posters'
+    - builder_table_update_itmaker_upage_posters.php
+1.0.11:
+    - 'Updated table itmaker_upage_posters'
+    - builder_table_update_itmaker_upage_posters_2.php
+1.0.12:
+    - 'Drop table itmaker_upage_cities'
+    - builder_table_delete_itmaker_upage_cities.php
+1.0.13:
+    - 'Drop table itmaker_upage_regions'
+    - builder_table_delete_itmaker_upage_regions.php
+1.0.14:
+    - 'Created table itmaker_upage_companies'
+    - builder_table_create_itmaker_upage_companies.php
+1.0.15:
+    - 'Created table itmaker_upage_locations'
+    - builder_table_create_itmaker_upage_locations.php
+1.0.16:
+    - 'Updated table itmaker_upage_locations'
+    - builder_table_update_itmaker_upage_locations.php
+1.0.17:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies.php
+1.0.18:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_2.php
+1.0.19:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_3.php
+1.0.20:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_4.php
+1.0.21:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_5.php
+1.0.22:
+    - 'Created table itmaker_upage_category_company'
+    - builder_table_create_itmaker_upage_category_company.php
+1.0.23:
+    - 'Updated table itmaker_upage_category_company'
+    - builder_table_update_itmaker_upage_category_company.php
+1.0.24:
+    - 'Created table itmaker_upage_company_schedules'
+    - builder_table_create_itmaker_upage_company_schedules.php
+1.0.25:
+    - 'Drop table itmaker_upage_company_schedules'
+    - builder_table_delete_itmaker_upage_company_schedules.php
+1.0.26:
+    - 'Created table itmaker_upage_company_scedules'
+    - builder_table_create_itmaker_upage_company_scedules.php
+1.0.27:
+    - 'Updated table itmaker_upage_company_scedules'
+    - builder_table_update_itmaker_upage_company_schedules.php
+1.0.28:
+    - 'Updated table itmaker_upage_company_schedules'
+    - builder_table_update_itmaker_upage_company_schedules_2.php
+1.0.29:
+    - 'Created table itmaker_upage_company_types'
+    - builder_table_create_itmaker_upage_company_types.php
+1.0.30:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_6.php
+1.0.31:
+    - 'Created table itmaker_upage_company_reviews'
+    - builder_table_create_itmaker_upage_company_reviews.php
+1.0.32:
+    - 'Updated table itmaker_upage_company_reviews'
+    - builder_table_update_itmaker_upage_company_reviews.php
+1.0.33:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_7.php
+1.0.34:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_8.php
+1.0.35:
+    - 'Updated table itmaker_upage_category_company'
+    - builder_table_update_itmaker_upage_category_company_2.php
+1.0.36:
+    - 'Created table itmaker_upage_poster_schedules'
+    - builder_table_create_itmaker_upage_poster_schedules.php
+1.0.37:
+    - 'Updated table itmaker_upage_poster_schedules'
+    - builder_table_update_itmaker_upage_poster_schedules.php
+1.0.38:
+    - 'Drop table itmaker_upage_posters'
+    - builder_table_delete_itmaker_upage_posters.php
+1.0.39:
+    - 'Created table itmaker_upage_'
+    - builder_table_create_itmaker_upage_.php
+1.0.40:
+    - 'Updated table itmaker_upage_'
+    - builder_table_update_itmaker_upage_posters_3.php
+1.0.41:
+    - 'Updated table itmaker_upage_posters'
+    - builder_table_update_itmaker_upage_posters_4.php
+1.0.42:
+    - 'Created table itmaker_upage_interesting'
+    - builder_table_create_itmaker_upage_interesting.php
+1.0.43:
+    - 'Updated table itmaker_upage_interesting'
+    - builder_table_update_itmaker_upage_interestings.php
+1.0.44:
+    - 'Updated table itmaker_upage_interestings'
+    - builder_table_update_itmaker_upage_interestings_2.php
+1.0.45:
+    - 'Updated table itmaker_upage_interestings'
+    - builder_table_update_itmaker_upage_interestings_3.php
+1.0.46:
+    - 'added user a phone number'
+    - migration1046.php
+1.0.47:
+    - 'Updated table itmaker_upage_interestings'
+    - builder_table_update_itmaker_upage_interestings_4.php
+1.0.48:
+    - 'Updated table itmaker_upage_category_company'
+    - builder_table_update_itmaker_upage_categories_companies.php
+1.0.49:
+    - 'Updated table itmaker_upage_categories_companies'
+    - builder_table_update_itmaker_upage_category_company_3.php
+1.0.50:
+    - 'Updated table itmaker_upage_interestings'
+    - builder_table_update_itmaker_upage_interestings_5.php
+1.0.51:
+    - 'Updated table itmaker_upage_posters'
+    - builder_table_update_itmaker_upage_posters_5.php
+1.0.52:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_9.php
+1.0.53:
+    - 'Created table itmaker_upage_'
+    - builder_table_create_itmaker_upage__2.php
+1.0.54:
+    - 'Updated table itmaker_upage_'
+    - builder_table_update_itmaker_upage_banners.php
+1.0.55:
+    - 'Updated table itmaker_upage_company_schedules'
+    - builder_table_update_itmaker_upage_company_schedules_3.php
+1.0.56:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_10.php
+1.0.57:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_11.php
+1.0.58:
+    - 'Created table itmaker_upage_company_views'
+    - builder_table_create_itmaker_upage_company_views.php
+1.0.59:
+    - 'Created table itmaker_upage_category_views'
+    - builder_table_create_itmaker_upage_category_views.php
+1.0.60:
+    - 'Updated table itmaker_upage_category_views'
+    - builder_table_update_itmaker_upage_category_views.php
+1.0.61:
+    - 'Updated table itmaker_upage_category_views'
+    - builder_table_update_itmaker_upage_category_views_2.php
+1.0.64:
+    - 'Updated table itmaker_upage_poster_schedules'
+    - builder_table_update_itmaker_upage_poster_schedules_2.php
+1.0.65:
+    - 'Updated table itmaker_upage_banners'
+    - builder_table_update_itmaker_upage_banners_2.php
+1.0.66:
+    - 'Updated table itmaker_upage_banners'
+    - builder_table_update_itmaker_upage_banners_3.php
+1.0.68:
+    - 'Updated table itmaker_upage_banners'
+    - builder_table_update_itmaker_upage_banners_4.php
+1.0.69:
+    - 'Created table itmaker_upage_reviews_reviews'
+    - builder_table_create_itmaker_upage_reviews_reviews.php
+1.0.70:
+    - 'Created table itmaker_upage_review_category'
+    - builder_table_create_itmaker_upage_review_category.php
+1.0.71:
+    - 'Created table itmaker_upage_reviews_categories'
+    - builder_table_create_itmaker_upage_reviews_categories.php
+1.0.72:
+    - 'Updated table itmaker_upage_interestings'
+    - builder_table_update_itmaker_upage_interestings_6.php
+1.0.73:
+    - 'Updated table itmaker_upage_reviews_categories'
+    - builder_table_update_itmaker_upage_review_categories.php
+1.0.74:
+    - 'Updated table itmaker_upage_review_category'
+    - builder_table_update_itmaker_upage_review_reviews_categories.php
+1.0.75:
+    - 'Updated table itmaker_upage_reviews_reviews'
+    - builder_table_update_itmaker_upage_reviews_categories.php
+1.0.76:
+    - 'Updated table itmaker_upage_reviews_categories'
+    - builder_table_update_itmaker_upage_review_reviews.php
+1.0.77:
+    - 'Updated table itmaker_upage_review_reviews_categories'
+    - builder_table_update_itmaker_upage_review_review_categories.php
+1.0.78:
+    - 'Updated table itmaker_upage_review_review_categories'
+    - builder_table_update_itmaker_upage_review_review_categories_2.php
+1.0.79:
+    - 'Updated table itmaker_upage_review_review_categories'
+    - builder_table_update_itmaker_upage_review_review_categories_3.php
+1.0.80:
+    - 'Updated table itmaker_upage_review_review_categories'
+    - builder_table_update_itmaker_upage_review_review_categories_4.php
+1.0.82:
+    - 'Updated table itmaker_upage_review_review_categories'
+    - builder_table_update_itmaker_upage_review_review_categories_6.php
+1.0.83:
+    - 'Updated table itmaker_upage_poster_schedules'
+    - builder_table_update_itmaker_upage_poster_schedules_3.php
+1.0.84:
+    - 'Updated table itmaker_upage_review_reviews'
+    - builder_table_update_itmaker_upage_review_reviews_2.php
+1.0.86:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_12.php
+1.0.87:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_13.php
+1.0.88:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_14.php
+1.0.89:
+    - 'Drop table itmaker_upage_review_review_categories'
+    - builder_table_delete_itmaker_upage_review_review_categories.php
+1.0.90:
+    - 'Drop table itmaker_upage_review_categories'
+    - builder_table_delete_itmaker_upage_review_categories.php
+1.0.91:
+    - 'Drop table itmaker_upage_review_review_categories'
+    - builder_table_delete_itmaker_upage_review_review_categories_2.php
+1.0.92:
+    - 'Drop table itmaker_upage_review_reviews'
+    - builder_table_delete_itmaker_upage_review_reviews.php
+1.0.93:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_15.php
+1.0.94:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_16.php
+1.0.95:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_17.php
+1.0.96:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_18.php
+1.0.97:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_19.php
+1.0.99:
+    - 'Updated table itmaker_upage_category_company'
+    - builder_table_update_itmaker_upage_category_company_7.php
+1.0.100:
+    - 'Updated table itmaker_upage_category_company'
+    - builder_table_update_itmaker_upage_category_company_8.php
+1.0.101:
+    - 'Updated table itmaker_upage_category_company'
+    - builder_table_update_itmaker_upage_category_company_9.php
+1.0.102:
+    - 'Updated table itmaker_upage_category_company'
+    - builder_table_update_itmaker_upage_category_company_10.php
+1.0.103:
+    - 'Updated table itmaker_upage_category_company'
+    - builder_table_update_itmaker_upage_category_company_11.php
+1.0.104:
+    - 'Updated table itmaker_upage_banners'
+    - builder_table_update_itmaker_upage_banners_6.php
+1.0.105:
+    - 'Updated table itmaker_upage_banners'
+    - builder_table_update_itmaker_upage_banners_7.php
+1.0.106:
+    - 'Updated table itmaker_upage_posters'
+    - builder_table_update_itmaker_upage_posters_6.php
+1.0.107:
+    - 'Updated table itmaker_upage_interestings'
+    - builder_table_update_itmaker_upage_interestings_7.php
+1.0.108:
+    - 'Created table itmaker_upage_favorites'
+    - builder_table_create_itmaker_upage_favorites.php
+1.0.109:
+    - 'Updated table itmaker_upage_favorites'
+    - builder_table_update_itmaker_upage_favorites.php
+1.0.110:
+    - 'Created table itmaker_upage_phone_verefications'
+    - builder_table_create_itmaker_upage_phone_verefications.php
+1.0.111:
+    - 'Updated table itmaker_upage_phone_verefications'
+    - builder_table_update_itmaker_upage_phone_verifications.php
+1.0.112:
+    - 'Updated table itmaker_upage_banners'
+    - builder_table_update_itmaker_upage_banners_8.php
+1.0.114:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_20.php
+1.0.115:
+    - 'Updated table itmaker_upage_interestings'
+    - builder_table_update_itmaker_upage_interestings_8.php
+1.0.116:
+    - 'Updated table itmaker_upage_interestings'
+    - builder_table_update_itmaker_upage_interestings_9.php
+1.0.117:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_21.php
+1.0.118:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_22.php
+1.0.119:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_22.php
+1.0.120:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_23.php
+1.0.121:
+    - 'Updated table itmaker_upage_companies'
+    - builder_table_update_itmaker_upage_companies_24.php

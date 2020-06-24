@@ -1,0 +1,17 @@
+fields:
+    category_id:
+        label: Компания
+        nameFrom: name
+        descriptionFrom: description
+        list: $/itmaker/upage/models/category/columns.yaml
+        span: auto
+        type: recordfinder
+    views:
+        label: Просмотры
+        span: auto
+        type: number
+    date:
+        label: 'За месяц'
+        mode: datetime
+        span: auto
+        type: datepicker

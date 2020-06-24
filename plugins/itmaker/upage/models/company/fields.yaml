@@ -1,0 +1,171 @@
+tabs:
+    fields:
+        name:
+            label: Название
+            span: left
+            type: text
+            tab: Компания
+        brand_name:
+            label: 'Брэндовое название'
+            span: right
+            type: text
+            tab: Компания
+        description:
+            label: Описание
+            size: large
+            span: full
+            type: richeditor
+            tab: Компания
+        index:
+            label: Индекс
+            span: left
+            default: '0'
+            type: text
+            tab: Компания
+        type_id:
+            label: 'Тип компании'
+            showSearch: true
+            span: auto
+            type: dropdown
+            tab: Компания
+        country:
+            label: Страна
+            span: left
+            type: text
+            tab: Компания
+        location:
+            label: 'Город, район'
+            nameFrom: name
+            descriptionFrom: description
+            span: right
+            type: relation
+            tab: Компания
+        street:
+            label: Улица
+            span: full
+            type: text
+            tab: Компания
+        fax:
+            label: Факс
+            span: auto
+            type: text
+            tab: Компания
+        website:
+            label: Вебсайт
+            span: auto
+            type: text
+            tab: Компания
+        region_code:
+            label: 'Код страны'
+            span: auto
+            type: text
+            tab: Компания
+        email:
+            label: Email
+            span: auto
+            type: text
+            tab: Компания
+        phones:
+            label: Телефоны
+            prompt: 'Добавить номер телефона'
+            span: full
+            type: repeater
+            tab: Компания
+            form:
+                fields:
+                    phone:
+                        label: 'Номер телефона'
+                        span: full
+                        type: text
+        logo:
+            label: Лого
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Компания
+        properties:
+            label: 'Дополнительные свойства'
+            prompt: 'Add new item'
+            span: full
+            type: repeater
+            tab: Компания
+            form:
+                fields:
+                    key:
+                        label: Ключ
+                        span: auto
+                        type: text
+                    value:
+                        label: Значение
+                        span: auto
+                        type: text
+        coor_lat:
+            label: Долгота
+            span: left
+            default: '0'
+            hidden: 0
+            type: text
+            tab: Компания
+        coor_long:
+            label: Широта
+            span: auto
+            default: '0'
+            hidden: 0
+            type: text
+            tab: Компания
+        map:
+            span: full
+            path: map
+            type: partial
+            tab: Компания
+        categories:
+            label: Категории
+            mode: relation
+            separator: comma
+            customTags: 0
+            useKey: false
+            span: full
+            type: taglist
+            tab: Компания
+        social_links:
+            label: 'Соц. сети'
+            prompt: 'добавить соц. сеть'
+            span: full
+            type: repeater
+            tab: Компания
+            form:
+                fields:
+                    type:
+                        label: 'тип соц. сети'
+                        options:
+                            'fa fa-telegram text-primary': Телеграм
+                            'fa fa-instagram text-danger': Инстаграм
+                            'fa fa-odnoklassniki text-warning': Однокласники
+                            'fa fa-twitter-square text-primary': Твиттер
+                            'fa fa-facebook-square text-primary': Фейсбук
+                        showSearch: true
+                        span: auto
+                        type: dropdown
+                    link:
+                        label: Ссылка
+                        span: auto
+                        type: text
+        keywords:
+            label: 'Ключевые слова для поиска'
+            span: full
+            type: text
+            tab: Компания
+        partial1:
+            span: full
+            path: field_company_schedules
+            type: partial
+            tab: 'Режим работы'
+        partial2:
+            span: full
+            path: field_company_views
+            type: partial
+            tab: Просмотры

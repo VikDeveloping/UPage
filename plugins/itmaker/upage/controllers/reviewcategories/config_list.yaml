@@ -1,0 +1,12 @@
+list: $/itmaker/upage/models/reviewcategory/columns.yaml
+modelClass: Itmaker\Upage\Models\ReviewCategory
+title: ReviewCategories
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'itmaker/upage/reviewcategories/update/:id'

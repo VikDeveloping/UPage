@@ -1,0 +1,21 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+    name:
+        label: 'названия '
+        type: text
+        searchable: true
+    location_id:
+        label: 'локация '
+        type: number
+        searchable: true
+    type_id:
+        label: тип
+        type: number
+        searchable: true
+    region_code:
+        label: область
+        type: number
+        searchable: true

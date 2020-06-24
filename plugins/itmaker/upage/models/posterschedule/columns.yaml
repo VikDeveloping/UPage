@@ -1,0 +1,20 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    cinema:
+        label: кинотеатр
+        type: text
+        searchable: true
+        sortable: true
+    start:
+        label: 'время показа'
+        type: datetime
+        searchable: true
+        sortable: true
+    poster_id:
+        label: poster_id
+        type: number
+        invisible: true

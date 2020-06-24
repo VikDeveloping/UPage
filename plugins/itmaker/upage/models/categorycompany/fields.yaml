@@ -1,0 +1,9 @@
+fields:
+    category_id:
+        label: 'Category id'
+        span: auto
+        type: number
+    company_id:
+        label: 'Company id'
+        span: auto
+        type: number

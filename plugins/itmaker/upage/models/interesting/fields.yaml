@@ -1,0 +1,27 @@
+fields:
+    name:
+        label: Загаловок
+        span: auto
+        type: text
+    is_active:
+        label: Активность
+        span: auto
+        type: switch
+    description:
+        label: Описание
+        size: large
+        span: full
+        type: richeditor
+    link:
+        label: Ссылка
+        span: auto
+        type: text
+    image:
+        label: Картинка
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload

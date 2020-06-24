@@ -1,0 +1,10 @@
+fields:
+    cinema:
+        label: 'Кинотеатр, зал'
+        span: auto
+        type: text
+    start:
+        label: 'дата и время показа'
+        mode: datetime
+        span: auto
+        type: datepicker

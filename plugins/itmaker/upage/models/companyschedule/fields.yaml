@@ -1,0 +1,28 @@
+fields:
+    day:
+        label: День
+        options:
+            Понедельник: Понедельник
+            Вторник: Вторник
+            Среда: Среда
+            Четверг: Четверг
+            Пятница: Пятница
+            Суббота: Суббота
+            Воскресенье: Воскресенье
+        showSearch: true
+        span: auto
+        type: dropdown
+    is_weekend:
+        label: Выходной
+        span: auto
+        type: switch
+    start:
+        label: Начало
+        mode: time
+        span: auto
+        type: datepicker
+    end:
+        label: Конец
+        mode: time
+        span: auto
+        type: datepicker

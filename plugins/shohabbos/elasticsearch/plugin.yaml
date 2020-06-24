@@ -1,0 +1,13 @@
+plugin:
+    name: 'shohabbos.elasticsearch::lang.plugin.name'
+    description: 'shohabbos.elasticsearch::lang.plugin.description'
+    author: Shohabbos
+    icon: oc-icon-search
+    homepage: ''
+permissions:
+    manage_indexes:
+        tab: 'Elastic search'
+        label: 'Manage indexes'
+    manage_settings:
+        tab: 'Elastic search'
+        label: 'Manage settings'

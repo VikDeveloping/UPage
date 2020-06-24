@@ -1,0 +1,26 @@
+fields:
+    company:
+        label: Компания
+        nameFrom: name
+        descriptionFrom: description
+        list: $/itmaker/upage/models/company/columns.yaml
+        span: auto
+        readOnly: 0
+        type: recordfinder
+    user:
+        label: Пользователь
+        nameFrom: name
+        descriptionFrom: description
+        list: $/rainlab/user/models/user/columns.yaml
+        span: auto
+        readOnly: 0
+        type: recordfinder
+    review:
+        label: 'Text area'
+        size: ''
+        span: auto
+        type: textarea
+    rating:
+        label: rating
+        span: auto
+        type: number

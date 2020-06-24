@@ -1,0 +1,184 @@
+title = "catalog"
+url = "/catalog/:page?1"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Itmaker\Upage\Models\Company;
+use Itmaker\Upage\Models\Location;
+use Itmaker\Upage\Models\CategoryView;
+use Itmaker\Upage\Models\Banner;
+
+function onStart () {
+    $companies = Company::with(['location', 'categories'])->remember(10)->companyList([
+        'category' => input('category'), 
+        'search'   => input('search'),
+        'city'     => input('city'),
+        'district' => input('district'),
+        'perPage'  => 10,
+        'page'     => input('page')
+    ]);
+    if(!$companies) {
+        return;
+    }
+    
+    $query = new Location();
+    $cities               = $query->with('children')->remember(10)->getAllRoot();
+    $this['cities']       = $cities;
+    $this['companies']    = $companies;
+    
+    $banners = Banner::banners([
+                    'type'  => 'catalog',
+                    'limit' => 2
+                ]);
+    
+    if (!$banners) {return;}
+    
+    $this['banners'] = $banners;
+}
+?>
+==
+<!-- Auth Form -->
+<div class="container">
+    <div class="clearfix visible-xs-block"></div>
+    
+    {% partial 'banners/two-items' %}
+    
+    <div class="razdelitel"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body catalog-search">
+                    <form method="GET" action="{{'catalog'|page}}">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="text" name="search" class="form-control" placeholder="Телефон, Название, Улица" value="{{ input('search') }}">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" name="city" id="cityChange">
+                                    <option value="">Город</option>
+                                    {% for city in cities %}
+                                        <option value="{{ city.id }}" {{ input('city') == city.id ? 'selected' }} data-items="{{city.children|json_encode}}">{{ city.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3" >
+                                <select class="form-control" name="district" id="district">
+                                    <option value="" hidden>Район</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <button type="submit" class="btn">ПОИСК</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% put scripts %}
+        <script>
+            $('#cityChange').change(function () {
+                
+                var html = '<option value=>Район</option>';
+                $('#cityChange').children('option:selected').data('items').forEach( function (item) {
+                    html += '<option value="'+ item.id +'">'+ item.name +'</option>';
+                });
+                $('#district').html(html);
+            });
+        </script>
+    {% endput %}
+    <div class="razdelitel"></div>
+    
+    <!-- Каталог организации -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            {% for key, company in companies %}
+                {% partial 'companies' company=company key=key %}
+            {% else %}
+                <h4 class="text-center" style="margin-bottom: 1rem;"> По вашим критериям ничего не найдено. </h4>
+            {% endfor %} 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            {{ companies.appends({category: input('category'), search: input('search'), city: input('city'), district: input('district')}).render |raw }}
+        </div>
+    </div>
+    <!-- Конец Каталог организации -->
+    <div class="clearfix visible-xs-block"></div>
+    {% partial 'top/top-years' %}
+    <div class="clearfix visible-xs-block"></div>
+    <!-- Афиша событий -->
+    <div class="afisha_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Афиша событий</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'posters'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-afisha">
+                    
+                    {% partial 'posters' %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Афиша событий -->
+    
+    <div class="razdelitel"></div>
+    
+    {% partial 'top/top-20' %}
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <!-- Интересное -->
+    <div class="interesting_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Интересное</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'interestings'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-interesting">
+                    {% partial 'interestings' %}
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Интересное -->
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <div class="razdelitel"></div>
+    
+    <!-- Today on movie -->
+    <div class="afisha_slides">
+        <div class="row">
+            {% partial 'todayCinema' %}
+        </div>
+    </div> 
+    
+    <!-- Конец Today on movie -->
+    <div class="razdelitel"></div>
+    <div class="razdelitel"></div>
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <div class="razdelitel"></div>
+</div>
+
+<style>
+    .information-list li{
+        list-style: none;
+    }
+</style>

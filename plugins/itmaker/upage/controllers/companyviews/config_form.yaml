@@ -1,0 +1,10 @@
+name: CompanyViews
+form: $/itmaker/upage/models/companyview/fields.yaml
+modelClass: Itmaker\Upage\Models\CompanyView
+defaultRedirect: itmaker/upage/companyviews
+create:
+    redirect: 'itmaker/upage/companyviews/update/:id'
+    redirectClose: itmaker/upage/companyviews
+update:
+    redirect: itmaker/upage/companyviews
+    redirectClose: itmaker/upage/companyviews

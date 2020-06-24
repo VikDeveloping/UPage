@@ -1,0 +1,40 @@
+[viewBag]
+==
+<?php
+use Itmaker\Upage\Models\Interesting;
+
+function onStart() {
+    $this['interestings'] = Interesting::with('image')
+                                       ->remember(10)
+                                       ->interestings([
+                                           'limit' => 20
+                                       ]);
+}
+?>
+==
+{% set mnths = ['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %}
+{% for interesting in interestings %}
+    <div class="interesting_news">
+        <div class="interesting_news-img pull-left">
+            <input type="hidden" id="addView" data-request="onAddView" data-request-data="id: '{{ interesting.id }}'">
+            <a href="{{'interesting'|page({id: interesting.id})}}">    
+            
+            {% if interesting.image %}
+               <img src="{{ interesting.image.path|resize(174, 116, {mode: 'crop'})}}"></a>
+            {% else %}
+                <img src="{{ 'assets/images/thumb__174_116.jpg'|theme }}">    
+            {% endif %}
+                
+        </div>
+        <div class="interesting_news-text pull-left">
+            <div class="interesting_news-text_short">
+                <a href="{{'interesting'|page({id: interesting.id})}}"><p>{{interesting.name | raw}}</p></a>
+            </div>
+            <div class="interesting_news-date">
+                {{ interesting.updated_at | date('d') }}
+                {{ mnths[interesting.updated_at| date('n')] }}
+                {{ interesting.updated_at | date('Y') }} г.
+            </div>
+        </div>
+    </div>
+{% endfor %}

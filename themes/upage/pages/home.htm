@@ -1,0 +1,124 @@
+title = "Главная"
+url = "/"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Itmaker\Upage\Models\Category;
+use Itmaker\Upage\Models\Banner;
+
+function onStart(){
+    $categories = Category::with(['icon', 'children'])->remember(10)->getAllRoot();
+    if (!$categories) {return;}
+    
+    $this['categories'] = $categories;
+    $banners = Banner::banners([
+                    'type'  => 'home',
+                    'limit' => 4
+                ]);
+    
+    if (!$banners) {return;}
+    
+    $this['banners'] = $banners;
+}
+?>
+==
+<!-- Auth Form -->
+<div class="container">
+    {% partial 'banners/slider' %}
+    <div class="row">
+       
+        <!--   Каталог организации -->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="pull-left">
+                <h2>
+                    Каталог организаций
+                </h2>
+            </div>
+            <div class="pull-right">
+                <h4>
+                    <!-- <a href="#">
+                        <img src="{{'assets/images/svg/Location.svg'|theme}}" alt=""> Посмотреть объекты на карте
+                    </a> -->
+                </h4>
+            </div>
+        </div>
+        <div class="clearfix visible-xs-block"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            {% for category in categories %}
+                <div class="catalogue">
+                    <a href="{{'catalog'| page}}?category={{category.id}}">
+                        <div class="catalogue_card">
+    
+                            <div class="catalogue_card-img">
+                                {% if category.icon %}
+                                    <img src="{{ category.icon.path }}">
+                                {% else %}
+                                    <img src="{{ 'assets/images/thumb__174_116.jpg'|theme }}">    
+                                {% endif %}        
+                            </div>
+                            
+                            <div class="catalogue_card-text pull-right">
+                                {{ category.name }}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+            <div class="clearfix"></div>
+        </div>
+        <!-- Конец Каталог организации -->
+        <div class="clearfix visible-xs-block"></div>
+        <!-- Рекламные баннеры -->
+        {% partial 'banners/two-items' uKey = 0 %}
+        <!-- Конец Рекламные баннеры -->
+    
+        <div class="razdelitel"></div>
+    
+        <!-- Афиша событий -->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="afisha">
+                <h3 class="pull-left">Афиша событий</h3>
+                <h4 class="pull-right see_all">
+                    <a href="{{'posters'|page}}">смотреть все</a>
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="owl-carousel owl-theme owl-carousel-afisha">
+                {% partial 'posters' %}
+            </div>    
+        </div>
+        <!-- Конец Афиша событий -->
+    
+        <div class="clearfix visible-xs-block"></div>
+    
+        <!-- Рекламные баннеры -->
+        {% partial 'banners/two-items' uKey = 2 %}  
+        <!-- Конец Рекламные баннеры -->
+    
+        <div class="clearfix visible-xs-block"></div>
+    
+        <!-- Интересное -->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="afisha">
+                <h3 class="pull-left">Интересное</h3>
+                <h4 class="pull-right see_all">
+                    <a href="{{'interestings'|page}}">смотреть все</a>
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="owl-carousel owl-theme owl-carousel-interesting">
+                
+                {% partial 'interestings' %}
+                
+            </div>
+        </div>
+    
+        <!-- Конец Интересное -->
+    
+    
+        <div class="razdelitel"></div>
+    </div>    
+</div>

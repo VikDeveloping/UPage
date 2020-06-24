@@ -1,0 +1,11 @@
+name: Categories
+modelClass: Itmaker\Upage\Models\Category
+form: $/itmaker/upage/models/category/fields.yaml
+defaultRedirect: itmaker/upage/categories
+create:
+    redirect: 'itmaker/upage/categories/update/:id'
+    redirectClose: itmaker/upage/categories
+update:
+    redirect: itmaker/upage/categories
+    redirectClose: itmaker/upage/categories
+preview: {  }

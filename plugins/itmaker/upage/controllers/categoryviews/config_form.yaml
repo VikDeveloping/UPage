@@ -1,0 +1,10 @@
+name: CategoryViews
+form: $/itmaker/upage/models/categoryview/fields.yaml
+modelClass: Itmaker\Upage\Models\CategoryView
+defaultRedirect: itmaker/upage/categoryviews
+create:
+    redirect: 'itmaker/upage/categoryviews/update/:id'
+    redirectClose: itmaker/upage/categoryviews
+update:
+    redirect: itmaker/upage/categoryviews
+    redirectClose: itmaker/upage/categoryviews

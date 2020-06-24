@@ -1,0 +1,56 @@
+[viewBag]
+==
+<?php
+use Itmaker\Upage\Models\Poster;
+
+function onStart() {
+    
+    $posters = Poster::with('image')
+                     ->remember(10)
+                     ->posters([
+                         'limit' => 20,
+                         'date'  => date('Y-m-d')
+                     ]);
+
+    if (!$posters) {
+        return;
+    }
+    
+    $this['todayPosters'] = $posters;
+}
+?>
+==
+{% if todayPosters is not empty %}
+    {% set mnths = ['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="movies">
+            <h3 class="pull-left">Сегодня в кинотеатрах Ташкента</h3>
+            <h5 class="pull-right see_all">
+                <a href="{{'posters'|page}}">СМОТРЕТЬ ВЕСЬ СПИСОК</a>
+            </h5>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="owl-carousel owl-theme owl-carousel-afisha">
+            {% for poster in todayPosters %}    
+                <div class="afisha_news">
+                    <div class="afisha_news-img">
+                        <img src="{{ poster.image.path}}">
+                    </div>
+                    <div class="afisha_news-text">
+                        <div class="afisha_news-text_title">
+                            <a href="{{'poster'|page({id: poster.id})}}">{{ poster.name }}</a>
+                        </div>
+                        <div class="afisha_news-text_short catalogue_card-text">
+                            {{ poster.anounce }}
+                        </div>
+                        <div class="afisha_news-date">
+                            {{ poster.date | date('j') }}
+                            {{ mnths[poster.date | date('n')] }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

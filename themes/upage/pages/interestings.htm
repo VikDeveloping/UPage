@@ -1,0 +1,142 @@
+title = "interestings"
+url = "/interestings"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Itmaker\Upage\Models\Interesting;
+use Itmaker\Upage\Models\Banner;
+
+function onStart() {
+    $interestings = Interesting::with('image')->where('is_active', true)->remember(10)->get();
+    
+    if (!$interestings) {
+        return;
+    }
+    
+    $this['interestings'] = $interestings;
+    
+    $banners = Banner::banners([
+                    'type'  => 'interestings',
+                    'limit' => 2
+                ]);
+    
+    if (!$banners) {return;}
+    
+    $this['banners'] = $banners;
+}
+?>
+==
+<!-- Auth Form -->
+<div class="container">
+    <div class="clearfix visible-xs-block"></div>
+    <!-- Рекламные баннеры -->
+    
+    {% partial 'banners/two-items' %}
+    <!-- Конец Рекламные баннеры -->
+
+    <div class="razdelitel"></div>
+    
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="afisha">
+            <h3 class="pull-left"><i class="fa fa-star-o"></i>Интересные для вас</h3>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+    {% for interesting in interestings %}
+        <div class="movie_card">
+            <div>
+                <div class="wrapper">
+                    <div class="movie_card-image">
+                        <a href="{{'interesting'|page({id: interesting.id})}}">
+                            <img src="{{interesting.image.path|resize(320, 213, {mode: 'crop'})}}" style="max-width: 320px; object-fit:cover">
+                        </a>
+                    </div>
+                    <div class="movie_card-table">
+                        <h3 style="margin-bottom: 70px;"><a href="{{'interesting'|page({id: interesting.id})}}"><p>{{ interesting.name|raw }}</p></a></h3>
+                    </div>
+                    <div class="movie_card-table">
+                        <p><a href="{{interesting.link}}">{{interesting.link}}</a></p>
+                    </div>
+                    <div class="movie_card-table">
+                        <p><br/>{{interesting.updated_at | date('d M Y')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+    <!-- Конец Сегодня кинотетрах -->
+
+<div class="clearfix visible-xs-block"></div>
+
+<div class="container">
+    <!-- Афиша событий -->
+    <div class="afisha_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Афиша событий</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'posters'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-afisha">
+                    
+                    {% partial 'posters' %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Афиша событий -->
+</div>
+<div class="razdelitel"></div>
+
+{% partial 'top/top-20' %}
+
+<div class="clearfix visible-xs-block"></div>
+<div class="container">
+    <!-- Интересное -->
+    <div class="interesting_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Интересное</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'interestings'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-interesting">
+                    {% partial 'interestings' %}
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Интересное -->
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <div class="razdelitel"></div>
+    
+    <!-- Today on movie -->
+    <div class="afisha_slides">
+        <div class="row">
+            {% partial 'todayCinema' %}
+        </div>
+    </div> 
+    
+    <!-- Конец Today on movie -->
+    <div class="razdelitel"></div>
+    
+    <div class="clearfix visible-xs-block"></div>
+
+
+    <div class="razdelitel"></div>
+</div>

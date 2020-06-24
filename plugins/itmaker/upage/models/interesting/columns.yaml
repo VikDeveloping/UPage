@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    type:
+        label: Тип
+        type: text
+        searchable: true
+        sortable: true
+    views:
+        label: Показов
+        type: number
+        searchable: true
+        sortable: true
+    date:
+        label: Срок
+        type: text
+        searchable: true
+        sortable: true
+    is_active:
+        label: Активность
+        type: switch
+        searchable: false
+        sortable: true

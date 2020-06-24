@@ -1,0 +1,50 @@
+tabs:
+    fields:
+        name:
+            label: Название
+            span: auto
+            type: text
+            tab: Афиша
+        is_active:
+            label: Активность
+            span: auto
+            type: switch
+            tab: Афиша
+        anounce:
+            label: Анонс
+            size: small
+            span: full
+            type: textarea
+            tab: Афиша
+        description:
+            label: Описание
+            size: large
+            span: full
+            type: richeditor
+            tab: Афиша
+        date:
+            label: 'Дата премьеры'
+            mode: date
+            span: auto
+            type: datepicker
+            tab: Афиша
+        image:
+            label: Изображение
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Афиша
+        video_url:
+            label: 'Ссылка на трейлер (Youtube)'
+            span: auto
+            type: text
+            tab: Афиша
+        partial1:
+            span: full
+            path: field_poster_schedules
+            type: partial
+            tab: Расписание

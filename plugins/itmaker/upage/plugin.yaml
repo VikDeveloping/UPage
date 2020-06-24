@@ -1,0 +1,176 @@
+plugin:
+    name: 'itmaker.upage::lang.plugin.name'
+    description: 'itmaker.upage::lang.plugin.description'
+    author: ITmaker
+    icon: oc-icon-book
+    homepage: ''
+permissions:
+    manage_categories:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage categories'
+    manage_posters:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage posters'
+    manage_locations:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage locations'
+    manage_companies:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Companies'
+    manage_company_types:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Company types'
+    manage_company_review:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Company review'
+    manage_interestings:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Interestings'
+    manage_banners:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Banners'
+    manage_company_views:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Company views'
+    manage_category_views:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Category views'
+    manage_category_companys:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Category Company'
+    manage_review_categories:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Review Categories'
+    manage_review_reviews:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Review Reviews'
+    manage_review_favorites:
+        tab: 'itmaker.upage::lang.plugin.name'
+        label: 'Manage Favorites'
+navigation:
+    companies:
+        label: Upage
+        url: /itmaker/upage/companies
+        icon: icon-book
+        permissions:
+            - manage_categories
+        order: '11'
+        sideMenu:
+            add-company:
+                label: 'Добавить компанию'
+                url: itmaker/upage/companies/create
+                icon: icon-plus
+                permissions:
+                    - manage_companies
+            companies:
+                label: Компании
+                url: /itmaker/upage/companies
+                icon: icon-cc-discover
+                permissions:
+                    - manage_companies
+            company-views:
+                label: 'Просмотры компаний'
+                url: /itmaker/upage/companyviews
+                icon: icon-bar-chart
+            company_review:
+                label: Отзывы
+                url: itmaker/upage/companyreviews
+                icon: icon-stack-overflow
+                permissions:
+                    - manage_company_review
+            company_types:
+                label: 'Типы для компаний'
+                url: /itmaker/upage/companyTypes
+                icon: icon-ticket
+            categories:
+                label: Категории
+                url: /itmaker/upage/categories
+                icon: icon-sitemap
+                permissions:
+                    - manage_categories
+            category_company:
+                label: 'Category Copmany'
+                url: itmaker/upage/categorycompanies
+                icon: icon-signal
+            favorites:
+                label: Favorites
+                url: itmaker/upage/favorites
+                icon: icon-star-o
+    banners:
+        label: Баннеры
+        url: itmaker/upage/banners
+        icon: icon-money
+        permissions:
+            - manage_banners
+        order: '12'
+        sideMenu:
+            banner:
+                label: 'Добавить баннер'
+                url: /itmaker/upage/banners/create
+                icon: icon-plus
+                permissions:
+                    - manage_banners
+            banners:
+                label: Баннеры
+                url: itmaker/upage/banners
+                icon: icon-money
+                permissions:
+                    - manage_banners
+    posters:
+        label: Афиша
+        url: /itmaker/upage/posters
+        icon: icon-simplybuilt
+        permissions:
+            - manage_posters
+        order: '13'
+        sideMenu:
+            add-poster:
+                label: 'Добавить афишу'
+                url: /itmaker/upage/posters/create
+                icon: icon-plus
+                permissions:
+                    - manage_posters
+            posters:
+                label: Афиша
+                url: /itmaker/upage/posters
+                icon: icon-simplybuilt
+    interestings:
+        label: Интересные
+        url: /itmaker/upage/interestings
+        icon: icon-bolt
+        permissions:
+            - manage_interestings
+        order: '15'
+        sideMenu:
+            add-poster:
+                label: 'Добавить новое'
+                url: /itmaker/upage/interestings/create
+                icon: icon-plus
+                permissions:
+                    - manage_interestings
+            interestings:
+                label: Интересные
+                url: itmaker/upage/interestings
+                icon: icon-bolt
+                permissions:
+                    - manage_interestings
+    locations:
+        label: 'Города и районы'
+        url: itmaker/upage/locations
+        icon: icon-map-marker
+        permissions:
+            - manage_locations
+        order: '16'
+        sideMenu:
+            add-locations:
+                label: 'Добавить город или район'
+                url: itmaker/upage/locations/create
+                icon: icon-plus
+                permissions:
+                    - manage_locations
+            locations:
+                label: 'Города и районы'
+                url: itmaker/upage/locations
+                icon: icon-map-marker
+                permissions:
+                    - manage_locations

@@ -1,0 +1,347 @@
+title = "show"
+url = "/show/:id"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Itmaker\Upage\Models\Company;
+use Itmaker\Upage\Models\CompanyView;
+use Itmaker\Upage\Models\CategoryView;
+use Itmaker\Upage\Models\CompanyReview;
+use Itmaker\Upage\Models\Banner;
+function onStart() {
+    $id = $this->param('id');
+    
+    $company = Company::with('categories')->remember(10)->getCompany(['id' => $id]);
+    $reviews = CompanyReview::with('company')->remember(10)->where('company_id', $id)->get();
+    
+    if(!$company) {
+        return Redirect::to('/catalog');
+    }
+    
+    $view = CompanyView::where('company_id', $id)->orderByDesc('date')->remember(10)->first();
+    
+    $current_date = date('Y-m-d');
+    if ($view && $view->date == $current_date) {
+        $view->increment('views');
+    } else {
+        $view = new CompanyView();
+        $view->company_id = $company->id;
+        $view->views = 1;
+        $view->date = $current_date;
+        $view->save();
+    }
+    $categoryParentId = [];
+    $unset = [];
+    foreach ($company->categories as $category){
+        if ($category->parent) {
+            $categoryParentId[] = $category->parent->id;
+        } else {
+            $categoryParentId[] = $category->id;        
+        }
+    }
+    $categoryParentId = array_unique($categoryParentId);
+    $catViews = CategoryView::whereIn('category_id', $categoryParentId)->remember(10)->whereYear('date', date('Y'))->whereMonth('date', date('m'))->get();
+    foreach ($catViews as $views) {
+        if (in_array($views->category_id, $categoryParentId)) {
+           $views->increment('views');
+           $unset[] = $views->category_id;
+        }
+    }
+    
+    $categoryParentId = array_diff($categoryParentId, $unset);
+    $add = [];
+    if (!empty($categoryParentId)) {
+        foreach ($categoryParentId as $id) {
+            $add[] = [
+                'category_id' => $id,
+                'views'       => 1,
+                'date'        => date('Y-m-d')
+            ];
+        }
+        CategoryView::insert($add);
+    }
+    
+    $this['reviews'] = $reviews;
+    $this['company'] = $company;
+    
+    $banners = Banner::banners([
+                    'type'  => 'show',
+                    'limit' => 2
+                ]);
+    
+    if (!$banners) {return;}
+    
+    $this['banners'] = $banners;
+}
+
+function onSend() {
+    $data = Input::only(['review', 'user', 'companyId']);
+    $rules = ['review' => 'string', 'user' => 'integer', 'companyId' => 'integer',];
+    $validator = Validator::make($data, $rules);
+    if ($validator->fails()) {throw new ValidationException($validator);}
+    $reviewReviews = new CompanyReview();
+    $reviewReviews->review = $data['review'];
+    $reviewReviews->user_id = $data['user'];
+    $reviewReviews->company_id = $data['companyId'];
+    $reviewReviews->save();
+}
+?>
+==
+<!-- Auth Form -->
+<div class="container">
+    <div class="row">
+        <div class="clearfix visible-xs-block"></div>
+        <!-- Рекламные баннеры -->
+        
+        {% partial 'banners/two-items' %}
+        <!-- Конец Рекламные баннеры -->
+    
+        <div class="razdelitel"></div>
+    
+        <!-- Каталог организации -->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="organisation_cards">
+                <div class="org_card">
+                    <div class="org_card-top">
+                        <div class="org_name">
+                            <div class="name">{{ company.name }}</div>
+                        </div>
+                        <div class="org_phone">
+                            <img src="{{'assets/images/svg/Phone_red.svg'|theme}}">
+                            {% for key, phone in phones %}
+                                {{ key != 0 ? ', ':'' }} {{phone.phone}} 
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="org_card-center" style="width: 100%">
+                        <div class="row" style="margin-bottom: 2rem">
+                            <div class="col-md-6">
+                                 <table class="table table-responsive table-border-0">
+                                    <tbody>
+                                        <tr>
+                                            <td>Индекс:</td>
+                                            <td>{{ company.index }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Код Страны:</td>
+                                            <td>{{ company.region_code }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Факсы:</td>
+                                            <td>{{ company.fax }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Веб-сайт:</td>
+                                            <td>{{ company.website }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>E-mail:</td>
+                                            <td><a href="mailto:{{ company.email }}">{{ company.email }}</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6 border-md-left">
+                                 <img src="{{ company.logo.path }}" class="company-logo" alt="">
+                            </div>
+                        </div>
+                        <div class="row border-top" style="padding-top: 1rem">
+                            <div class="col-md-12">
+                                <table class="table table-responsive table-border-0">
+                                    <tbody>
+                                        <tr>
+                                            <td>Юридическое название:</td>
+                                            <td>{{ company.name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Брендовое название:</td>
+                                            <td>{{ company.brand_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Адрес:</td>
+                                            <td>
+                                                <a href="#map">
+                                                    {{ company.country }}, 
+                                                    {{ company.location.parent.name ~ ','}} 
+                                                    {{ company.location.name ~ ',' }} 
+                                                    {{ company.street }} 
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row border-top" style="padding: 1.5rem 0 2rem">
+                            <div class="col-md-12">
+                                {{ company.description | raw }}
+                            </div>
+                        </div>
+                        <div class="row border-top" style="padding-top: 1rem">
+                            {% if company.properties is not empty %}
+                                <div class="col-md-6">
+                                    <h4>Дополнительно</h4>
+                                    <table class="table table-responsive table-border-0">
+                                        <tbody>
+                                            {% for property in company.properties %}
+                                                <tr>
+                                                    <td>{{ property.key }}:</td>
+                                                    <td>
+                                                        {{ property.value }}
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% endif %}
+                            {% if company.social_links is not empty %}
+                                <div class="col-md-6">
+                                    {% for link in company.social_links %}
+                                        <a href="{{ link.link }}" style="font-size: 1.75rem">
+                                            <span style="margin-right: 1rem"><i class="{{ link.type }}"></i></span>
+                                            {{ link.link }}
+                                        </a> <br />
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="row border-top" style="padding-top: 1rem">
+                           
+                            <div class="col-md-12">
+                                <h4>График работы</h4>
+                                <table class="table table-responsive table-border-0">
+                                    <tbody>
+                                        {% for schedule in company.companySchedules %}
+                                            <tr>
+                                                <td>{{ schedule.day }}</td>
+                                                <td>{{ schedule.is_weekend ? 'Выходной' : schedule.start ~ ' - ' ~ schedule.end }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="org_card-bottom" style="">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <button data-toggle="collapse" data-target="#cats" class="org_card-bootom_more active">Рубрики <i class="fa fa-long-arrow-down"></i></button>
+                                <br>
+                                <div id="cats" class="collapse org_card-bootom_tags">
+                                    <ul>
+                                        {% for category in company.categories if category.nest_depth == 1 %}
+                                            <li>
+                                                <a href="http://upage.uz/catalog?category={{ category.id }}">{{category.name}}</a>
+                                            </li>
+                                        {% endfor %}    
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="favorite text-right">
+                                    <a href="javascript:void()" class="favorit-btn {{company.isFav()}}" 
+                                        data-request="onAddToList" 
+                                        data-request-flash="" 
+                                        data-request-success="$(this).toggleClass('active')" 
+                                        data-request-data="post_id: {{company.id}}">
+                                        <i class="fa fa-star"></i>
+                                        <span>
+                                            {% if company.isFav() == 'active' %}
+                                                В избранном
+                                            {% else %} 
+                                                Добавить в избранные
+                                            {% endif %}
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    
+        <!-- Конец Каталог организации -->
+    
+        
+    
+        <div class="razdelitel"></div>
+    
+        <!-- Статистика просмотров --> 
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% partial 'maps/map' %}
+        </div>
+    </div>
+    
+    <div class="razdelitel"></div>
+  
+    <!-- Афиша событий -->
+    <div class="afisha_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Афиша событий</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'posters'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-afisha">
+                    
+                    {% partial 'posters' %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Афиша событий -->
+    
+    <div class="razdelitel"></div>
+    
+    {% partial 'top/top-20' %}
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <!-- Интересное -->
+    <div class="interesting_slides">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="afisha">
+                    <h3 class="pull-left">Интересное</h3>
+                    <h4 class="pull-right see_all">
+                        <a href="{{'interestings'|page}}">смотреть все</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="owl-carousel owl-theme owl-carousel-interesting">
+                    {% partial 'interestings' %}
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Конец Интересное -->
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    <div class="razdelitel"></div>
+    
+    <!-- Today on movie -->
+    {% partial 'todayCinema' %}
+    <!-- Конец Today on movie -->
+    <div class="razdelitel"></div>
+    <div class="razdelitel"></div>
+    
+    <div class="clearfix visible-xs-block"></div>
+    
+    {% partial 'reviews/review' %}
+
+    <div class="razdelitel"></div>
+</div>

@@ -1,0 +1,34 @@
+title = "Redirect"
+url = "/redirect/:type/:id?"
+is_hidden = 0
+==
+<?php
+use Itmaker\Upage\Models\Banner;
+
+function onStart () {
+    
+    $type = $this->param('type');
+    $id   = $this->param('id');
+    $url  = Input::get('url');
+    if (!$url) {
+        return Redirect::back();
+    }
+    
+    if ($type == 'banner' && $id) {
+        $banner = Banner::find($id);
+        if ($banner) {
+            $banner->clicks += 1;
+            $banner->update();
+            return Redirect::to($url);
+        } else {
+            return Redirect::back();
+        }
+    } else {
+        return Redirect::back();
+    }
+    
+    
+    
+}
+?>
+==
